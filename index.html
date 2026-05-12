@@ -7,137 +7,162 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="Gym Plan">
 <meta name="apple-touch-fullscreen" content="yes">
-<link rel="canonical" href="https://grayysl.github.io/gymplan/">
 <meta name="theme-color" content="#0f1a14">
 <link rel="manifest" href="manifest.json">
 <link rel="apple-touch-icon" href="icon.png">
+<link rel="canonical" href="https://grayysl.github.io/gymplan/">
 <title>Gym Plan</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
 body{background:#0f1a14;color:#e8ead6;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-size:14px;min-height:100vh;padding-top:env(safe-area-inset-top);padding-bottom:env(safe-area-inset-bottom)}
-:root{--bg:#0f1a14;--bg2:#162010;--bg3:#1c2a18;--card:#1a2416;--border:#2a3d24;--border2:#3a5530;--text:#e8ead6;--text2:#8a9e7a;--text3:#5a7050;--accent:#5a9e6a;--accent2:#3d7a50;--gold:#c8a84b;--red:#c85a4a;--orange:#c87a3a}
 input,select,button{font-family:inherit;font-size:14px}
 input[type=number]{-moz-appearance:textfield}
 input::-webkit-outer-spin-button,input::-webkit-inner-spin-button{-webkit-appearance:none}
-.hero{text-align:center;padding:2rem 1.5rem 1.5rem;border-bottom:1px solid var(--border)}
-.hero-tags{display:flex;justify-content:center;gap:10px;margin-bottom:1rem;flex-wrap:wrap}
-.hero-tag{font-size:10px;letter-spacing:.12em;color:var(--accent);font-weight:600;text-transform:uppercase}
-.hero-dot{color:var(--text3);font-size:10px}
-.hero h1{font-family:Georgia,serif;font-size:clamp(1.4rem,5vw,2.2rem);font-weight:400;line-height:1.2;margin-bottom:.4rem}
-.hero p{font-size:12px;color:var(--text2)}
-.tab-bar{display:grid;grid-template-columns:repeat(5,1fr);border-bottom:1px solid var(--border)}
-.tab-btn{padding:.65rem .2rem;text-align:center;cursor:pointer;background:transparent;color:var(--text2);border:none;font-size:10px;font-weight:600;letter-spacing:.02em;border-bottom:2px solid transparent;transition:all .15s}
-.tab-btn.active{background:var(--bg2);color:var(--accent);border-bottom:2px solid var(--accent)}
-.tab-btn span{display:block;font-size:8px;color:var(--text3);font-weight:400;margin-top:2px;text-transform:uppercase}
-.tab-btn:not(:last-child){border-right:1px solid var(--border)}
-.sub-tabs{display:flex;border-bottom:1px solid var(--border);padding:0 1rem;overflow-x:auto;scrollbar-width:none}
+
+.hero{text-align:center;padding:1.5rem 1.5rem 1.2rem;border-bottom:1px solid #2a3d24}
+.hero-tags{display:flex;justify-content:center;gap:10px;margin-bottom:.8rem;flex-wrap:wrap}
+.hero-tag{font-size:10px;letter-spacing:.12em;color:#5a9e6a;font-weight:600;text-transform:uppercase}
+.hero-dot{color:#5a7050;font-size:10px}
+.hero h1{font-family:Georgia,serif;font-size:1.6rem;font-weight:400;line-height:1.2;margin-bottom:.3rem}
+.hero p{font-size:12px;color:#8a9e7a}
+
+.tab-bar{display:grid;grid-template-columns:repeat(5,1fr);border-bottom:1px solid #2a3d24}
+.tab-btn{padding:.6rem .2rem;text-align:center;cursor:pointer;background:transparent;color:#8a9e7a;border:none;font-size:10px;font-weight:600;letter-spacing:.02em;border-bottom:2px solid transparent;transition:all .15s;border-right:1px solid #2a3d24}
+.tab-btn:last-child{border-right:none}
+.tab-btn.active{background:#162010;color:#5a9e6a;border-bottom:2px solid #5a9e6a}
+.tab-btn span{display:block;font-size:8px;color:#5a7050;font-weight:400;margin-top:2px;text-transform:uppercase}
+
+.sub-tabs{display:flex;border-bottom:1px solid #2a3d24;overflow-x:auto;scrollbar-width:none}
 .sub-tabs::-webkit-scrollbar{display:none}
-.sub-btn{flex-shrink:0;padding:.65rem .9rem;font-size:11px;letter-spacing:.07em;font-weight:600;text-transform:uppercase;color:var(--text3);cursor:pointer;border-bottom:2px solid transparent;background:transparent;border:none;white-space:nowrap}
-.sub-btn.active{color:var(--text);border-bottom:2px solid var(--text)}
-.day-hero{padding:1.2rem 1.5rem;border-bottom:1px solid var(--border);background:var(--bg2)}
-.day-hero .weekday{font-size:10px;letter-spacing:.14em;color:var(--accent2);text-transform:uppercase;font-weight:600;margin-bottom:.2rem}
-.day-hero .focus{font-size:11px;letter-spacing:.1em;color:var(--accent);text-transform:uppercase;font-weight:600;margin-bottom:.35rem}
+.sub-btn{flex-shrink:0;padding:.65rem 1rem;font-size:11px;letter-spacing:.07em;font-weight:600;text-transform:uppercase;color:#5a7050;cursor:pointer;border-bottom:2px solid transparent;background:transparent;border-top:none;border-left:none;border-right:none;white-space:nowrap}
+.sub-btn.active{color:#e8ead6;border-bottom:2px solid #e8ead6}
+
+.day-hero{padding:1.2rem 1.5rem;border-bottom:1px solid #2a3d24;background:#162010}
+.day-hero .weekday{font-size:10px;letter-spacing:.14em;color:#3d7a50;text-transform:uppercase;font-weight:600;margin-bottom:.2rem}
+.day-hero .focus{font-size:11px;letter-spacing:.1em;color:#5a9e6a;text-transform:uppercase;font-weight:600;margin-bottom:.3rem}
 .day-hero h2{font-family:Georgia,serif;font-size:1.4rem;font-weight:400;margin-bottom:.25rem}
-.day-hero .dur{font-size:12px;color:var(--text2)}
-.muscle-tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:.7rem}
+.day-hero .dur{font-size:12px;color:#8a9e7a}
+.day-hero .log-progress{font-size:11px;color:#5a9e6a;margin-top:.6rem}
+
+.muscle-tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:.6rem}
 .mtag{font-size:10px;padding:3px 10px;border-radius:20px;font-weight:600;letter-spacing:.05em}
-.ex-list{padding:.5rem 1rem 1.5rem}
-.ex-card{background:var(--card);border:1px solid var(--border);border-radius:6px;margin-bottom:8px;overflow:hidden;transition:border-color .2s}
-.ex-card.open{border-color:var(--accent2)}
-.ex-top{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;padding:1rem 1rem 1rem 1.2rem;cursor:pointer}
-.ex-type{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--text3);margin-bottom:4px}
-.ex-name{font-size:14px;font-weight:500}
-.ex-machine{font-size:11px;color:var(--text2);margin-top:2px}
-.ex-meta{font-size:10px;color:var(--text3);margin-top:3px}
-.ex-last{font-size:10px;color:var(--text3);margin-top:3px}
-.ex-logged{font-size:10px;color:var(--accent);margin-top:3px}
-.ex-badge{flex-shrink:0;font-size:11px;font-weight:600;padding:4px 10px;border-radius:20px;border:1px solid var(--border2);color:var(--accent);white-space:nowrap;background:var(--bg3)}
-.ex-arrow{color:var(--text3);font-size:10px;margin-left:4px;display:inline-block;transition:transform .2s}
+
+.ex-list{padding:.5rem 1rem 1rem}
+
+.ex-card{background:#1a2416;border:1px solid #2a3d24;border-radius:6px;margin-bottom:8px;overflow:hidden;transition:border-color .15s}
+.ex-card.open{border-color:#3d7a50}
+.ex-top{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;padding:1rem 1rem 1rem 1.2rem;cursor:pointer;user-select:none}
+.ex-type{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#5a7050;margin-bottom:3px}
+.ex-name{font-size:14px;font-weight:500;color:#e8ead6}
+.ex-machine{font-size:11px;color:#8a9e7a;margin-top:2px}
+.ex-last{font-size:10px;color:#5a7050;margin-top:3px}
+.ex-logged-badge{font-size:10px;color:#5a9e6a;margin-top:3px;display:none}
+.ex-badge{flex-shrink:0;font-size:11px;font-weight:600;padding:4px 10px;border-radius:20px;border:1px solid #3a5530;color:#5a9e6a;white-space:nowrap;background:#1c2a18}
+.ex-arrow{color:#5a7050;font-size:10px;margin-left:4px;display:inline-block;transition:transform .2s}
 .ex-card.open .ex-arrow{transform:rotate(180deg)}
-.ex-body{border-top:1px solid var(--border);display:none}
+
+.ex-body{display:none;border-top:1px solid #2a3d24}
 .ex-card.open .ex-body{display:block}
+
 .ex-imgs{display:flex;gap:8px;padding:10px 10px 0;overflow-x:auto}
-.ex-img{height:180px;width:auto;border-radius:6px;flex-shrink:0;object-fit:cover;border:1px solid var(--border)}
-.ex-note{font-size:12px;color:var(--text2);line-height:1.6;padding:.7rem 1rem .5rem}
-.log-section{border-top:1px solid var(--border);padding:1rem}
-.log-title{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);font-weight:600;margin-bottom:.7rem}
-.prev-box{background:var(--bg2);border:1px solid var(--border);border-radius:4px;padding:.6rem .8rem;font-size:11px;color:var(--text2);margin-bottom:.8rem}
-.prev-title{font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--text3);font-weight:600;margin-bottom:4px}
+.ex-img{height:180px;width:auto;border-radius:6px;flex-shrink:0;object-fit:cover;border:1px solid #2a3d24}
+.ex-note{font-size:12px;color:#8a9e7a;line-height:1.6;padding:.7rem 1rem .5rem}
+
+.log-section{border-top:1px solid #2a3d24;padding:1rem}
+.log-title{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#5a9e6a;font-weight:600;margin-bottom:.7rem}
+
+.prev-box{background:#162010;border:1px solid #2a3d24;border-radius:4px;padding:.6rem .8rem;margin-bottom:.8rem}
+.prev-title{font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:#5a7050;font-weight:600;margin-bottom:4px}
 .prev-row{display:flex;justify-content:space-between;font-size:11px;margin-bottom:2px}
+
 .set-rows{margin-bottom:8px}
 .set-row{display:flex;gap:6px;align-items:flex-end;margin-bottom:10px}
-.set-num{font-size:11px;color:var(--text3);width:20px;flex-shrink:0;padding-bottom:6px}
+.set-num{font-size:11px;color:#5a7050;width:20px;flex-shrink:0;padding-bottom:6px}
 .field-wrap{flex:1}
-.field-label{font-size:9px;color:var(--text3);text-transform:uppercase;letter-spacing:.07em;margin-bottom:3px}
-.field-input{background:var(--bg2);border:1px solid var(--border);border-radius:4px;padding:.4rem .5rem;font-size:13px;color:var(--text);width:100%;outline:none}
-.rir-select{background:var(--bg2);border:1px solid var(--border);border-radius:4px;padding:.4rem .5rem;font-size:12px;color:var(--text);width:100%;outline:none;appearance:none;-webkit-appearance:none}
+.field-label{font-size:9px;color:#5a7050;text-transform:uppercase;letter-spacing:.07em;margin-bottom:3px}
+.field-input{background:#162010;border:1px solid #2a3d24;border-radius:4px;padding:.4rem .5rem;font-size:13px;color:#e8ead6;width:100%;outline:none}
+.rir-select{background:#162010;border:1px solid #2a3d24;border-radius:4px;padding:.4rem .5rem;font-size:12px;color:#e8ead6;width:100%;outline:none;-webkit-appearance:none;appearance:none}
+
 .btn-row{display:flex;gap:8px;margin-top:4px;flex-wrap:wrap}
-.btn-ghost{background:transparent;border:1px solid var(--border);border-radius:4px;padding:.4rem .8rem;font-size:11px;color:var(--text2);cursor:pointer}
-.btn-accent{background:var(--accent2);border:none;border-radius:4px;padding:.5rem 1rem;font-size:12px;color:var(--text);cursor:pointer;font-weight:600}
-.btn-log{background:transparent;border:1px solid var(--accent2);border-radius:4px;padding:.4rem .8rem;font-size:11px;color:var(--accent);cursor:pointer}
-.logged-sets{font-size:11px;color:var(--text2);margin-bottom:8px}
-.logged-row{display:flex;justify-content:space-between;margin-bottom:2px}
-.finish-btn{width:100%;padding:.7rem;font-size:13px;font-weight:600;border-radius:6px;cursor:pointer;border:1px solid var(--border);background:var(--bg3);color:var(--text2)}
-.finish-btn.ready{border-color:var(--accent);background:var(--accent2);color:var(--text)}
-.rules-section{padding:1rem 1rem 1.5rem;border-top:1px solid var(--border)}
-.rules-label{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:.8rem}
-.rule-item{background:var(--bg2);border-left:2px solid var(--gold);padding:.7rem 1rem;margin-bottom:6px;border-radius:0 4px 4px 0;font-size:12px;color:var(--text2);line-height:1.5}
-.rir-guide{background:var(--bg2);border:1px solid var(--border);border-radius:6px;padding:.8rem 1rem;margin-bottom:1rem}
-.rir-guide-title{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:.6rem}
+.btn-ghost{background:transparent;border:1px solid #2a3d24;border-radius:4px;padding:.4rem .8rem;font-size:11px;color:#8a9e7a;cursor:pointer}
+.btn-accent{background:#3d7a50;border:none;border-radius:4px;padding:.5rem 1rem;font-size:12px;color:#e8ead6;cursor:pointer;font-weight:600}
+.btn-log{background:transparent;border:1px solid #3d7a50;border-radius:4px;padding:.4rem .8rem;font-size:11px;color:#5a9e6a;cursor:pointer}
+
+.logged-display{font-size:11px;color:#8a9e7a;margin-bottom:8px}
+.logged-row{display:flex;justify-content:space-between;margin-bottom:3px}
+
+.finish-wrap{padding:0 1rem 1.2rem;display:none}
+.finish-btn{width:100%;padding:.7rem;font-size:13px;font-weight:600;border-radius:6px;cursor:pointer;border:1px solid #5a9e6a;background:#3d7a50;color:#e8ead6}
+
+.rules-section{padding:1rem 1rem 1.5rem;border-top:1px solid #2a3d24}
+.rules-label{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:#c8a84b;font-weight:600;margin-bottom:.8rem}
+.rule-item{background:#162010;border-left:2px solid #c8a84b;padding:.7rem 1rem;margin-bottom:6px;border-radius:0 4px 4px 0;font-size:12px;color:#8a9e7a;line-height:1.5}
+
+.rir-guide{background:#162010;border:1px solid #2a3d24;border-radius:6px;padding:.8rem 1rem;margin-bottom:1rem}
+.rir-guide-title{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#c8a84b;font-weight:600;margin-bottom:.6rem}
 .rir-row{display:flex;align-items:center;gap:8px;margin-bottom:5px;font-size:12px}
 .rir-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+
 .ov-grid{padding:1rem}
-.ov-card{border:1px solid var(--border);border-radius:6px;padding:1rem;margin-bottom:8px;background:var(--card)}
-.ov-card.rest{background:var(--bg2);border-left:2px solid var(--accent2)}
-.ov-day{font-size:10px;letter-spacing:.1em;color:var(--text3);text-transform:uppercase;font-weight:600;margin-bottom:4px}
-.ov-title{font-family:Georgia,serif;font-size:1.05rem;margin-bottom:4px}
-.ov-meta{font-size:12px;color:var(--text2);margin-bottom:8px}
-.nut-card{background:var(--card);border:1px solid var(--border);border-radius:6px;overflow:hidden;margin-bottom:1rem}
-.nut-header{padding:.7rem 1rem;background:var(--bg3);border-bottom:1px solid var(--border);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--text2);font-weight:600}
-.nut-row{display:flex;justify-content:space-between;align-items:center;padding:.65rem 1rem;border-bottom:1px solid var(--border);font-size:13px}
+.ov-card{border:1px solid #2a3d24;border-radius:6px;padding:1rem;margin-bottom:8px;background:#1a2416}
+.ov-card.rest{background:#162010;border-left:2px solid #3d7a50}
+.ov-day{font-size:10px;letter-spacing:.1em;color:#5a7050;text-transform:uppercase;font-weight:600;margin-bottom:4px}
+.ov-title{font-family:Georgia,serif;font-size:1.05rem;color:#e8ead6;margin-bottom:4px}
+.ov-meta{font-size:12px;color:#8a9e7a;margin-bottom:8px}
+
+.nut-card{background:#1a2416;border:1px solid #2a3d24;border-radius:6px;overflow:hidden;margin-bottom:1rem}
+.nut-header{padding:.7rem 1rem;background:#1c2a18;border-bottom:1px solid #2a3d24;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#8a9e7a;font-weight:600}
+.nut-row{display:flex;justify-content:space-between;align-items:center;padding:.65rem 1rem;border-bottom:1px solid #2a3d24;font-size:13px}
 .nut-row:last-child{border-bottom:none}
-.nut-label{color:var(--text2)}
-.nut-val{color:var(--text);font-weight:500}
-.tip-card{background:var(--card);border:1px solid var(--border);border-radius:6px;padding:.9rem 1rem;margin-bottom:8px;font-size:13px;color:var(--text2);line-height:1.5;display:flex;gap:10px}
-.tip-icon{color:var(--accent);flex-shrink:0}
+.nut-label{color:#8a9e7a}
+.nut-val{color:#e8ead6;font-weight:500}
+
+.tip-card{background:#1a2416;border:1px solid #2a3d24;border-radius:6px;padding:.9rem 1rem;margin-bottom:8px;font-size:13px;color:#8a9e7a;line-height:1.5;display:flex;gap:10px}
+.tip-icon{color:#5a9e6a;flex-shrink:0}
+
 .prog-wrap{padding:1rem}
-.prog-h{font-family:Georgia,serif;font-size:1.2rem;margin-bottom:.3rem}
-.prog-sub{font-size:12px;color:var(--text2);margin-bottom:1rem}
-.streak-card{background:var(--card);border:1px solid var(--border);border-radius:6px;padding:1rem;margin-bottom:1rem;display:flex;align-items:center;gap:1rem}
-.streak-num{font-family:Georgia,serif;font-size:2.5rem;color:var(--accent);line-height:1}
-.streak-label{font-size:13px;font-weight:600}
-.streak-sub{font-size:11px;color:var(--text3);margin-top:2px}
-.ex-pick-label{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--text3);font-weight:600;margin-bottom:.5rem}
+.prog-h{font-family:Georgia,serif;font-size:1.2rem;color:#e8ead6;margin-bottom:.3rem}
+.prog-sub{font-size:12px;color:#8a9e7a;margin-bottom:1rem}
+.streak-card{background:#1a2416;border:1px solid #2a3d24;border-radius:6px;padding:1rem;margin-bottom:1rem;display:flex;align-items:center;gap:1rem}
+.streak-num{font-family:Georgia,serif;font-size:2.5rem;color:#5a9e6a;line-height:1}
+.streak-label{font-size:13px;color:#e8ead6;font-weight:600}
+.streak-sub{font-size:11px;color:#5a7050;margin-top:2px}
+
+.ex-pick-label{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#5a7050;font-weight:600;margin-bottom:.5rem}
 .ex-pick-scroll{display:flex;gap:6px;overflow-x:auto;padding-bottom:4px;scrollbar-width:none;margin-bottom:1rem}
 .ex-pick-scroll::-webkit-scrollbar{display:none}
-.ex-pick{flex-shrink:0;padding:5px 12px;border-radius:20px;font-size:11px;font-weight:600;cursor:pointer;border:1px solid var(--border);background:transparent;color:var(--text2)}
-.ex-pick.active{border-color:var(--accent);background:var(--accent2);color:var(--text)}
-.chart-wrap{background:var(--card);border:1px solid var(--border);border-radius:6px;padding:1rem;margin-bottom:1rem}
-.chart-title{font-size:12px;color:var(--text2);margin-bottom:.7rem;font-weight:600}
-.chart-hint{font-size:11px;color:var(--text3);margin-top:4px}
-.chart-empty{height:80px;display:flex;align-items:center;justify-content:center;font-size:11px;color:var(--text3)}
-.sess-card{background:var(--card);border:1px solid var(--border);border-radius:6px;padding:1rem;margin-bottom:8px}
-.sess-date{font-size:11px;color:var(--accent);font-weight:600;margin-bottom:3px}
-.sess-day{font-size:13px;font-weight:500;margin-bottom:6px}
-.sess-ex{font-size:11px;color:var(--text2);margin-bottom:4px}
-.empty-state{text-align:center;padding:2rem 1rem;color:var(--text3);font-size:13px;line-height:1.8}
-.toast{position:fixed;top:16px;left:50%;transform:translateX(-50%);background:var(--accent2);border:1px solid var(--accent);border-radius:8px;padding:.6rem 1.2rem;font-size:13px;color:var(--text);z-index:999;white-space:nowrap;box-shadow:0 4px 12px rgba(0,0,0,.4);display:none}
+.ex-pick{flex-shrink:0;padding:5px 12px;border-radius:20px;font-size:11px;font-weight:600;cursor:pointer;border:1px solid #2a3d24;background:transparent;color:#8a9e7a}
+.ex-pick.active{border-color:#5a9e6a;background:#3d7a50;color:#e8ead6}
+
+.chart-wrap{background:#1a2416;border:1px solid #2a3d24;border-radius:6px;padding:1rem;margin-bottom:1rem}
+.chart-title{font-size:12px;color:#8a9e7a;margin-bottom:.7rem;font-weight:600}
+.chart-empty{height:80px;display:flex;align-items:center;justify-content:center;font-size:11px;color:#5a7050}
+.chart-hint{font-size:11px;color:#5a7050;margin-top:4px}
+
+.sess-card{background:#1a2416;border:1px solid #2a3d24;border-radius:6px;padding:1rem;margin-bottom:8px}
+.sess-date{font-size:11px;color:#5a9e6a;font-weight:600;margin-bottom:3px}
+.sess-day{font-size:13px;color:#e8ead6;font-weight:500;margin-bottom:6px}
+.sess-ex{font-size:11px;color:#8a9e7a;margin-bottom:4px}
+
+.empty-state{text-align:center;padding:2rem 1rem;color:#5a7050;font-size:13px;line-height:1.8}
 .pad{padding:1rem}
-.section-gap{border-top:2px solid var(--border);margin:0 1rem}
+.divider{border-top:2px solid #2a3d24;margin:0 1rem}
+
+.toast{position:fixed;top:calc(env(safe-area-inset-top) + 12px);left:50%;transform:translateX(-50%);background:#3d7a50;border:1px solid #5a9e6a;border-radius:8px;padding:.6rem 1.2rem;font-size:13px;color:#e8ead6;z-index:9999;white-space:nowrap;box-shadow:0 4px 12px rgba(0,0,0,.5);opacity:0;transition:opacity .2s;pointer-events:none}
+.toast.show{opacity:1}
 </style>
 </head>
 <body>
-
 <div class="toast" id="toast"></div>
 
 <div class="hero">
   <div class="hero-tags">
-    <span class="hero-tag">Bulk & Tone</span><span class="hero-dot">·</span>
+    <span class="hero-tag">Bulk &amp; Tone</span><span class="hero-dot">·</span>
     <span class="hero-tag">Tue–Sat</span><span class="hero-dot">·</span>
     <span class="hero-tag">RIR Tracked</span>
   </div>
   <h1>Your Complete Gym Plan</h1>
-  <p id="hero-sub">5 training days · Sun & Mon rest</p>
+  <p id="hero-sub">5 training days · Sun &amp; Mon rest</p>
 </div>
 
 <div class="tab-bar">
@@ -148,62 +173,66 @@ input::-webkit-outer-spin-button,input::-webkit-inner-spin-button{-webkit-appear
   <button class="tab-btn" onclick="showTab(4)">Progress<span>Log+Charts</span></button>
 </div>
 
+<!-- TAB 0: OVERVIEW -->
 <div id="tab0">
   <div class="ov-grid">
     <div class="ov-card rest"><div class="ov-day">Sunday</div><div class="ov-title">Rest</div><div class="ov-meta">Full rest — muscles rebuild overnight</div></div>
     <div class="ov-card rest"><div class="ov-day">Monday</div><div class="ov-title">Rest</div><div class="ov-meta">Full rest — arrive Tuesday fresh</div></div>
-    <div class="ov-card"><div class="ov-day">Tuesday</div><div class="ov-title">Chest & Shoulders</div><div class="ov-meta">Push focus · ~55 min</div><div class="muscle-tags"><span class="mtag" style="color:#e8a070;background:#c8603015;border:1px solid #c8603030">Chest</span><span class="mtag" style="color:#a090e8;background:#7060c815;border:1px solid #7060c830">Shoulders</span></div></div>
-    <div class="ov-card"><div class="ov-day">Wednesday</div><div class="ov-title">Back & Biceps</div><div class="ov-meta">Pull focus · ~55 min</div><div class="muscle-tags"><span class="mtag" style="color:#70c890;background:#40a06015;border:1px solid #40a06030">Lats</span><span class="mtag" style="color:#70b0e8;background:#4080c015;border:1px solid #4080c030">Biceps</span></div></div>
-    <div class="ov-card"><div class="ov-day">Thursday</div><div class="ov-title">Legs & Glutes</div><div class="ov-meta">Lower body · ~60 min</div><div class="muscle-tags"><span class="mtag" style="color:#90d870;background:#60b04015;border:1px solid #60b04030">Quads</span><span class="mtag" style="color:#90d870;background:#60b04015;border:1px solid #60b04030">Hamstrings</span><span class="mtag" style="color:#e870b0;background:#c0408015;border:1px solid #c0408030">Glutes</span></div></div>
-    <div class="ov-card"><div class="ov-day">Friday</div><div class="ov-title">Biceps & Triceps</div><div class="ov-meta">Arms · ~50 min</div><div class="muscle-tags"><span class="mtag" style="color:#70b0e8;background:#4080c015;border:1px solid #4080c030">Biceps</span><span class="mtag" style="color:#e8c870;background:#c0a04015;border:1px solid #c0a04030">Triceps</span></div></div>
-    <div class="ov-card"><div class="ov-day">Saturday</div><div class="ov-title">Posterior & Back</div><div class="ov-meta">Back extension focus · ~55 min</div><div class="muscle-tags"><span class="mtag" style="color:#70c890;background:#40a06015;border:1px solid #40a06030">Back</span><span class="mtag" style="color:#a0c0a0;background:#60806015;border:1px solid #608060">Posterior</span></div></div>
+    <div class="ov-card"><div class="ov-day">Tuesday</div><div class="ov-title">Chest &amp; Shoulders</div><div class="ov-meta">Push focus · ~55 min</div><div class="muscle-tags"><span class="mtag" style="color:#e8a070;background:#c8603015;border:1px solid #c8603030">Chest</span><span class="mtag" style="color:#a090e8;background:#7060c815;border:1px solid #7060c830">Shoulders</span></div></div>
+    <div class="ov-card"><div class="ov-day">Wednesday</div><div class="ov-title">Back &amp; Biceps</div><div class="ov-meta">Pull focus · ~55 min</div><div class="muscle-tags"><span class="mtag" style="color:#70c890;background:#40a06015;border:1px solid #40a06030">Lats</span><span class="mtag" style="color:#70b0e8;background:#4080c015;border:1px solid #4080c030">Biceps</span></div></div>
+    <div class="ov-card"><div class="ov-day">Thursday</div><div class="ov-title">Legs &amp; Glutes</div><div class="ov-meta">Lower body · ~60 min</div><div class="muscle-tags"><span class="mtag" style="color:#90d870;background:#60b04015;border:1px solid #60b04030">Quads</span><span class="mtag" style="color:#90d870;background:#60b04015;border:1px solid #60b04030">Hamstrings</span><span class="mtag" style="color:#e870b0;background:#c0408015;border:1px solid #c0408030">Glutes</span></div></div>
+    <div class="ov-card"><div class="ov-day">Friday</div><div class="ov-title">Biceps &amp; Triceps</div><div class="ov-meta">Arms · ~50 min</div><div class="muscle-tags"><span class="mtag" style="color:#70b0e8;background:#4080c015;border:1px solid #4080c030">Biceps</span><span class="mtag" style="color:#e8c870;background:#c0a04015;border:1px solid #c0a04030">Triceps</span></div></div>
+    <div class="ov-card"><div class="ov-day">Saturday</div><div class="ov-title">Posterior &amp; Back</div><div class="ov-meta">Back extension focus · ~55 min</div><div class="muscle-tags"><span class="mtag" style="color:#70c890;background:#40a06015;border:1px solid #40a06030">Back</span><span class="mtag" style="color:#a0c0a0;background:#60806015;border:1px solid #608060">Posterior</span></div></div>
   </div>
   <div class="pad">
     <div class="rir-guide">
-      <div class="rir-guide-title">⚡ Reps In Reserve (RIR) guide</div>
-      <div class="rir-row"><div class="rir-dot" style="background:#5a9e6a"></div><span style="color:#5a9e6a;font-weight:600;min-width:24px">0</span><span style="color:var(--text2)">Failure — maximum stimulus</span></div>
-      <div class="rir-row"><div class="rir-dot" style="background:#5a9e6a"></div><span style="color:#5a9e6a;font-weight:600;min-width:24px">1</span><span style="color:var(--text2)">Optimal — last set target</span></div>
-      <div class="rir-row"><div class="rir-dot" style="background:#c8a84b"></div><span style="color:#c8a84b;font-weight:600;min-width:24px">2</span><span style="color:var(--text2)">Solid — aim for sets 2–3</span></div>
-      <div class="rir-row"><div class="rir-dot" style="background:#c87a3a"></div><span style="color:#c87a3a;font-weight:600;min-width:24px">3</span><span style="color:var(--text2)">Push harder next time</span></div>
-      <div class="rir-row"><div class="rir-dot" style="background:#c85a4a"></div><span style="color:#c85a4a;font-weight:600;min-width:24px">4+</span><span style="color:var(--text2)">Too easy — increase weight</span></div>
+      <div class="rir-guide-title">&#9889; Reps In Reserve (RIR) guide</div>
+      <div class="rir-row"><div class="rir-dot" style="background:#5a9e6a"></div><span style="color:#5a9e6a;font-weight:600;min-width:28px">0</span><span style="color:#8a9e7a">Failure — maximum stimulus</span></div>
+      <div class="rir-row"><div class="rir-dot" style="background:#5a9e6a"></div><span style="color:#5a9e6a;font-weight:600;min-width:28px">1</span><span style="color:#8a9e7a">Optimal — last set target</span></div>
+      <div class="rir-row"><div class="rir-dot" style="background:#c8a84b"></div><span style="color:#c8a84b;font-weight:600;min-width:28px">2</span><span style="color:#8a9e7a">Solid — aim for sets 1–3</span></div>
+      <div class="rir-row"><div class="rir-dot" style="background:#c87a3a"></div><span style="color:#c87a3a;font-weight:600;min-width:28px">3</span><span style="color:#8a9e7a">Push harder next time</span></div>
+      <div class="rir-row"><div class="rir-dot" style="background:#c85a4a"></div><span style="color:#c85a4a;font-weight:600;min-width:28px">4+</span><span style="color:#8a9e7a">Too easy — increase weight</span></div>
     </div>
     <div class="nut-card">
       <div class="nut-header">Rep ranges</div>
       <div class="nut-row"><span class="nut-label">Hypertrophy</span><span class="nut-val">8–12 reps</span></div>
-      <div class="nut-row"><span class="nut-label">Tone & endurance</span><span class="nut-val">12–15 reps</span></div>
+      <div class="nut-row"><span class="nut-label">Tone &amp; endurance</span><span class="nut-val">12–15 reps</span></div>
       <div class="nut-row"><span class="nut-label">Last set RIR target</span><span class="nut-val">1 — one rep from failure</span></div>
       <div class="nut-row"><span class="nut-label">Rest between sets</span><span class="nut-val">60–90 sec</span></div>
     </div>
   </div>
   <div class="rules-section">
-    <div class="rules-label">⚠ Golden rules</div>
-    <div class="rule-item">! Progressive overload every week — small weight increases drive all muscle growth.</div>
-    <div class="rule-item">! Last set of every exercise: push to 1 RIR. Earlier sets: 2–3 RIR.</div>
-    <div class="rule-item">! If RIR is consistently 3+, the weight is too light — increase it.</div>
+    <div class="rules-label">&#9888; Golden rules</div>
+    <div class="rule-item">Progressive overload every week — small weight increases drive all muscle growth.</div>
+    <div class="rule-item">Last set of every exercise: push to 1 RIR. Earlier sets: 2–3 RIR.</div>
+    <div class="rule-item">If RIR is consistently 3+, the weight is too light — increase it.</div>
   </div>
 </div>
 
+<!-- TAB 1: TUE-WED -->
 <div id="tab1" style="display:none">
   <div class="sub-tabs">
-    <button class="sub-btn active" onclick="showSub(1,0)">Tuesday — Chest & Shoulders</button>
-    <button class="sub-btn" onclick="showSub(1,1)">Wednesday — Back & Biceps</button>
+    <button class="sub-btn active" onclick="showSub(1,0,this)">Tuesday — Chest &amp; Shoulders</button>
+    <button class="sub-btn" onclick="showSub(1,1,this)">Wednesday — Back &amp; Biceps</button>
   </div>
   <div id="sub1_0"></div>
   <div id="sub1_1" style="display:none"></div>
 </div>
 
+<!-- TAB 2: THU-FRI -->
 <div id="tab2" style="display:none">
   <div class="sub-tabs">
-    <button class="sub-btn active" onclick="showSub(2,0)">Thursday — Legs & Glutes</button>
-    <button class="sub-btn" onclick="showSub(2,1)">Friday — Arms</button>
+    <button class="sub-btn active" onclick="showSub(2,0,this)">Thursday — Legs &amp; Glutes</button>
+    <button class="sub-btn" onclick="showSub(2,1,this)">Friday — Arms</button>
   </div>
   <div id="sub2_0"></div>
   <div id="sub2_1" style="display:none"></div>
 </div>
 
+<!-- TAB 3: SATURDAY -->
 <div id="tab3" style="display:none">
   <div id="sub3_0"></div>
-  <div class="section-gap"></div>
+  <div class="divider"></div>
   <div class="pad">
     <div class="nut-card">
       <div class="nut-header">Nutrition targets</div>
@@ -213,40 +242,36 @@ input::-webkit-outer-spin-button,input::-webkit-inner-spin-button{-webkit-appear
       <div class="nut-row"><span class="nut-label">Post-workout</span><span class="nut-val">Protein within 30–60 min</span></div>
       <div class="nut-row"><span class="nut-label">Hydration</span><span class="nut-val">2–3 litres daily</span></div>
     </div>
-    <div class="tip-card"><span class="tip-icon">↑</span><span>Progressive overload + proximity to failure drives fast muscle growth.</span></div>
-    <div class="tip-card"><span class="tip-icon">◎</span><span>Log every set with RIR — if it's consistently 3+, increase the weight.</span></div>
-    <div class="tip-card"><span class="tip-icon">◑</span><span>Sleep 7–9 hours. Muscles are built at rest, not in the gym.</span></div>
-    <div class="tip-card"><span class="tip-icon">+</span><span>Core finisher can be added as a 5–10 min session end once your research is complete.</span></div>
+    <div class="tip-card"><span class="tip-icon">&#8593;</span><span>Progressive overload + proximity to failure drives fast muscle growth.</span></div>
+    <div class="tip-card"><span class="tip-icon">&#9675;</span><span>Log every set with RIR — if it's consistently 3+, increase the weight.</span></div>
+    <div class="tip-card"><span class="tip-icon">&#9681;</span><span>Sleep 7–9 hours. Muscles are built at rest, not in the gym.</span></div>
   </div>
 </div>
 
+<!-- TAB 4: PROGRESS -->
 <div id="tab4" style="display:none">
   <div class="prog-wrap">
     <div class="prog-h">Progress tracker</div>
     <div class="prog-sub" id="prog-sub">0 sessions logged</div>
-    <div class="rir-guide">
-      <div class="rir-guide-title">⚡ RIR colour guide</div>
-      <div class="rir-row"><div class="rir-dot" style="background:#5a9e6a"></div><span style="color:#5a9e6a;font-weight:600;min-width:24px">0–1</span><span style="color:var(--text2)">Optimal — green zone</span></div>
-      <div class="rir-row"><div class="rir-dot" style="background:#c8a84b"></div><span style="color:#c8a84b;font-weight:600;min-width:24px">2</span><span style="color:var(--text2)">Solid</span></div>
-      <div class="rir-row"><div class="rir-dot" style="background:#c87a3a"></div><span style="color:#c87a3a;font-weight:600;min-width:24px">3</span><span style="color:var(--text2)">Push harder</span></div>
-      <div class="rir-row"><div class="rir-dot" style="background:#c85a4a"></div><span style="color:#c85a4a;font-weight:600;min-width:24px">4+</span><span style="color:var(--text2)">Too easy — increase weight</span></div>
-    </div>
     <div class="streak-card">
       <div class="streak-num" id="streak-num">0</div>
-      <div><div class="streak-label">Week streak 🔥</div><div class="streak-sub" id="streak-sub">Log your first session to start</div></div>
+      <div>
+        <div class="streak-label">Week streak &#128293;</div>
+        <div class="streak-sub" id="streak-sub">Log your first session to start</div>
+      </div>
     </div>
     <div class="ex-pick-label">Exercise progression</div>
     <div class="ex-pick-scroll" id="ex-picks"></div>
     <div class="chart-wrap">
-      <div class="chart-title" id="chart-title">— max weight per session (kg)</div>
-      <div id="weight-chart"></div>
+      <div class="chart-title" id="chart-weight-title">Max weight per session (kg)</div>
+      <div id="chart-weight"></div>
     </div>
-    <div class="chart-wrap" id="rir-chart-wrap">
-      <div class="chart-title" id="rir-chart-title">— avg RIR per session</div>
-      <div id="rir-chart"></div>
+    <div class="chart-wrap" id="chart-rir-wrap" style="display:none">
+      <div class="chart-title" id="chart-rir-title">Avg RIR per session</div>
+      <div id="chart-rir"></div>
       <div class="chart-hint">Target: avg RIR 1–2 on working sets</div>
     </div>
-    <div class="rules-label" style="margin-top:.5rem">Session history</div>
+    <div class="rules-label" style="margin-top:.5rem;margin-bottom:.8rem">Session history</div>
     <div id="session-history"></div>
   </div>
 </div>
@@ -276,415 +301,573 @@ const IMGS = {
 };
 
 
-// ── Data ──────────────────────────────────────────────────────────────────────
-const schedule = [
-  { day:"Tuesday",   focus:"Push day",       title:"Chest & Shoulders", dur:"5 exercises · ~55 min",
+// ── Schedule data ─────────────────────────────────────────────────────────────
+var schedule = [
+  { id:"tue", day:"Tuesday",   focus:"Push day",       title:"Chest & Shoulders", dur:"5 exercises · ~55 min",
     tags:[{l:"Chest",c:"#e8a070",b:"#c8603015",bc:"#c8603030"},{l:"Shoulders",c:"#a090e8",b:"#7060c815",bc:"#7060c830"}],
     exercises:[
-      {id:"chest_press",   type:"Machine",name:"Chest press",           machine:"Eagle NX",          sets:4,rep:"8–12", note:"Adjust seat so handles are at mid-chest. Select hand position so hands finish in front of shoulders. Push until arms fully extended. Primary chest builder of the session.",imgs:["i6533"]},
-      {id:"ohp",           type:"Machine",name:"Overhead press",         machine:"Prestige Strength", sets:4,rep:"8–12", note:"Seat so hands start slightly above shoulders. Push straight up until arms fully straightened. Primary deltoid builder.",imgs:["i6536"]},
-      {id:"pec_upper",     type:"Cable",  name:"Pec fly — upper chest",  machine:"Pec Fly / Cable",   sets:3,rep:"10–12",note:"Set cable arms high. Pull down and together. Squeeze hard at the centre. Keep a slight bend in the elbows — never lock out.",imgs:["i6520","i6521"]},
-      {id:"pec_mid",       type:"Cable",  name:"Pec fly — mid chest",    machine:"Pec Fly / Cable",   sets:3,rep:"10–12",note:"Arms at shoulder height. Squeeze chest at centre. Primary pectoral activation position.",imgs:["i6522"]},
-      {id:"fly_a",         type:"Machine",name:"Fly — Fly position",     machine:"Prestige Strength", sets:3,rep:"10–12",note:"Position A: push handles forward. Targets chest and anterior deltoid. Maintain a slight bend in elbows.",imgs:["i6543"]},
+      {id:"chest_press",    type:"Machine", name:"Chest press",            machine:"Eagle NX",          sets:4, rep:"8–12",  note:"Adjust seat so handles are at mid-chest. Push until arms fully extended. Primary chest builder.", imgs:["i6533"]},
+      {id:"ohp",            type:"Machine", name:"Overhead press",          machine:"Prestige Strength", sets:4, rep:"8–12",  note:"Seat so hands start slightly above shoulders. Push straight up until arms fully straightened.", imgs:["i6536"]},
+      {id:"pec_upper",      type:"Cable",   name:"Pec fly — upper chest",   machine:"Pec Fly / Cable",   sets:3, rep:"10–12", note:"Set cable arms high. Pull down and together. Squeeze hard at the centre. Never lock elbows.", imgs:["i6520","i6521"]},
+      {id:"pec_mid",        type:"Cable",   name:"Pec fly — mid chest",     machine:"Pec Fly / Cable",   sets:3, rep:"10–12", note:"Arms at shoulder height. Squeeze chest at centre. Primary pectoral activation position.", imgs:["i6522"]},
+      {id:"fly_a",          type:"Machine", name:"Fly — Fly position",      machine:"Prestige Strength", sets:3, rep:"10–12", note:"Position A: push handles forward. Targets chest and anterior deltoid.", imgs:["i6543"]}
     ],
-    rules:["Start chest press as your heaviest compound lift — you're freshest here.","Last set of each exercise: push to 1 RIR. Earlier sets: 2–3 RIR."],
+    rules:["Start chest press as your heaviest compound lift — you're freshest here.","Last set of each exercise: push to 1 RIR. Earlier sets: 2–3 RIR."]
   },
-  { day:"Wednesday", focus:"Pull day",       title:"Back & Biceps",     dur:"5 exercises · ~55 min",
+  { id:"wed", day:"Wednesday", focus:"Pull day",       title:"Back & Biceps",     dur:"5 exercises · ~55 min",
     tags:[{l:"Lats",c:"#70c890",b:"#40a06015",bc:"#40a06030"},{l:"Mid-back",c:"#70c890",b:"#40a06015",bc:"#40a06030"},{l:"Biceps",c:"#70b0e8",b:"#4080c015",bc:"#4080c030"}],
     exercises:[
-      {id:"pulldown_wide",  type:"Machine",name:"Pulldown — wide grip",   machine:"Prestige Strength",sets:4,rep:"8–12", note:"Wide grip targets lats for the V-taper. Pull until elbows are by sides. Full stretch at the top each rep.",imgs:["i6534","i6531","i6532"]},
-      {id:"row",            type:"Machine",name:"Seated row",             machine:"Prestige Strength",sets:4,rep:"8–12", note:"Hands level with shoulders. Pull until elbows are at sides. Key exercise for back thickness.",imgs:["i6535"]},
-      {id:"pulldown_close", type:"Cable",  name:"Pulldown — close grip",  machine:"Cable machine",    sets:3,rep:"10–12",note:"Underhand or neutral close grip hits mid-back and biceps simultaneously.",imgs:["i6530"]},
-      {id:"arm_curl",       type:"Machine",name:"Arm curl",               machine:"Eagle NX",         sets:4,rep:"10–12",note:"Full range of motion. Pull up towards shoulders. Isolates biceps completely.",imgs:["i6537"]},
-      {id:"cable_curl",     type:"Cable",  name:"Cable curl — underhand", machine:"Cable machine",    sets:3,rep:"10–12",note:"Elbows pinned to sides. Squeeze hard at top. Control the descent — 2–3 seconds down.",imgs:["i6523"]},
+      {id:"pulldown_wide",  type:"Machine", name:"Pulldown — wide grip",    machine:"Prestige Strength", sets:4, rep:"8–12",  note:"Wide grip targets lats for the V-taper. Pull until elbows are by sides. Full stretch at the top.", imgs:["i6534","i6531","i6532"]},
+      {id:"row",            type:"Machine", name:"Seated row",              machine:"Prestige Strength", sets:4, rep:"8–12",  note:"Hands level with shoulders. Pull until elbows at sides. Key exercise for back thickness.", imgs:["i6535"]},
+      {id:"pulldown_close", type:"Cable",   name:"Pulldown — close grip",   machine:"Cable machine",     sets:3, rep:"10–12", note:"Underhand or neutral close grip hits mid-back and biceps simultaneously.", imgs:["i6530"]},
+      {id:"arm_curl",       type:"Machine", name:"Arm curl",                machine:"Eagle NX",          sets:4, rep:"10–12", note:"Full range of motion. Pull up towards shoulders. Isolates biceps completely.", imgs:["i6537"]},
+      {id:"cable_curl",     type:"Cable",   name:"Cable curl — underhand",  machine:"Cable machine",     sets:3, rep:"10–12", note:"Elbows pinned to sides. Squeeze hard at top. Control descent — 2–3 seconds down.", imgs:["i6523"]}
     ],
-    rules:["Wide grip pulldown builds width. Row builds thickness. Both essential.","Biceps are pre-fatigued by rows and pulldowns — curls finish them off."],
+    rules:["Wide grip pulldown builds width. Row builds thickness. Both essential.","Biceps are pre-fatigued by rows and pulldowns — curls finish them off."]
   },
-  { day:"Thursday",  focus:"Lower body day", title:"Legs & Glutes",     dur:"6 exercises · ~60 min",
+  { id:"thu", day:"Thursday",  focus:"Lower body day", title:"Legs & Glutes",     dur:"6 exercises · ~60 min",
     tags:[{l:"Quads",c:"#90d870",b:"#60b04015",bc:"#60b04030"},{l:"Hamstrings",c:"#90d870",b:"#60b04015",bc:"#60b04030"},{l:"Glutes",c:"#e870b0",b:"#c0408015",bc:"#c0408030"}],
     exercises:[
-      {id:"leg_press",     type:"Machine",name:"Leg press",              machine:"Eagle NX",         sets:4,rep:"10–12",note:"Foot plate at ~90° knee angle. Feet shoulder-width, toes slightly outward. Push until legs straight.",imgs:["i6539"]},
-      {id:"leg_ext",       type:"Machine",name:"Leg extension",          machine:"Prestige Strength",sets:3,rep:"12–15",note:"Align knees with axis of rotation marker. Push forward and up until legs straight.",imgs:["i6540"]},
-      {id:"seated_curl",   type:"Machine",name:"Seated leg curl",        machine:"Prestige Strength",sets:3,rep:"12–15",note:"Lower thigh pad to snug. Pull down and back until feet are below seat.",imgs:["i6541"]},
-      {id:"prone_curl",    type:"Machine",name:"Prone leg curl",         machine:"Prestige Strength",sets:3,rep:"10–12",note:"Lie face down. Align knee with axis. Curl up against pad.",imgs:["i6538"]},
-      {id:"hip_abduct",    type:"Machine",name:"Hip abduction",          machine:"Cybex VR1",        sets:3,rep:"12–15",note:"Pads outside knees. Push outward through full range.",imgs:["i6542"]},
-      {id:"hip_adduct",    type:"Machine",name:"Hip adduction",          machine:"Cybex VR1",        sets:3,rep:"12–15",note:"Pads inside knees. Squeeze legs together through full range.",imgs:["i6542"]},
+      {id:"leg_press",      type:"Machine", name:"Leg press",               machine:"Eagle NX",          sets:4, rep:"10–12", note:"Foot plate at ~90° knee angle. Feet shoulder-width, toes slightly outward. Push until legs straight.", imgs:["i6539"]},
+      {id:"leg_ext",        type:"Machine", name:"Leg extension",           machine:"Prestige Strength", sets:3, rep:"12–15", note:"Align knees with axis of rotation marker. Push forward and up until legs straight.", imgs:["i6540"]},
+      {id:"seated_curl",    type:"Machine", name:"Seated leg curl",         machine:"Prestige Strength", sets:3, rep:"12–15", note:"Lower thigh pad to snug. Pull down and back until feet are below seat.", imgs:["i6541"]},
+      {id:"prone_curl",     type:"Machine", name:"Prone leg curl",          machine:"Prestige Strength", sets:3, rep:"10–12", note:"Lie face down. Align knee with axis. Curl up against pad.", imgs:["i6538"]},
+      {id:"hip_abduct",     type:"Machine", name:"Hip abduction",           machine:"Cybex VR1",         sets:3, rep:"12–15", note:"Pads outside knees. Push outward through full range.", imgs:["i6542"]},
+      {id:"hip_adduct",     type:"Machine", name:"Hip adduction",           machine:"Cybex VR1",         sets:3, rep:"12–15", note:"Pads inside knees. Squeeze legs together through full range.", imgs:["i6542"]}
     ],
-    rules:["Leg press first — do it fresh.","Leg DOMS early on is normal — it fades with consistency."],
+    rules:["Leg press first — do it fresh.","Leg DOMS early on is normal — it fades with consistency."]
   },
-  { day:"Friday",    focus:"Arms day",       title:"Biceps & Triceps",  dur:"5 exercises · ~50 min",
+  { id:"fri", day:"Friday",    focus:"Arms day",       title:"Biceps & Triceps",  dur:"5 exercises · ~50 min",
     tags:[{l:"Biceps",c:"#70b0e8",b:"#4080c015",bc:"#4080c030"},{l:"Triceps",c:"#e8c870",b:"#c0a04015",bc:"#c0a04030"},{l:"Shoulders",c:"#a090e8",b:"#7060c815",bc:"#7060c830"}],
     exercises:[
-      {id:"arm_curl_fri",  type:"Machine",name:"Arm curl",               machine:"Eagle NX",         sets:4,rep:"10–12",note:"Slow on the way down — 3 seconds eccentric. The lowering phase drives significant growth.",imgs:["i6537"]},
-      {id:"arm_ext",       type:"Machine",name:"Arm extension",          machine:"Prestige Strength",sets:4,rep:"10–12",note:"Upper arms on support pads. Elbows aligned with axis. Push forward and down.",imgs:["i6545"]},
-      {id:"cable_curl_fri",type:"Cable",  name:"Cable curl — underhand", machine:"Cable machine",    sets:3,rep:"10–12",note:"Elbows pinned. Squeeze hard at top for peak bicep contraction.",imgs:["i6523"]},
-      {id:"pushdown",      type:"Cable",  name:"Cable pushdown — triceps",machine:"Cable machine",   sets:3,rep:"10–12",note:"Elbows pinned to sides. Push down until arms fully extended.",imgs:[]},
-      {id:"ohp_light",     type:"Machine",name:"Overhead press — lighter",machine:"Prestige Strength",sets:3,rep:"12–15",note:"Drop weight vs Tuesday. Higher reps for shoulder endurance.",imgs:["i6536"]},
+      {id:"arm_curl_fri",   type:"Machine", name:"Arm curl",                machine:"Eagle NX",          sets:4, rep:"10–12", note:"Slow on the way down — 3 seconds eccentric. The lowering phase drives significant growth.", imgs:["i6537"]},
+      {id:"arm_ext",        type:"Machine", name:"Arm extension",           machine:"Prestige Strength", sets:4, rep:"10–12", note:"Upper arms on support pads. Elbows aligned with axis. Push forward and down.", imgs:["i6545"]},
+      {id:"cable_curl_fri", type:"Cable",   name:"Cable curl — underhand",  machine:"Cable machine",     sets:3, rep:"10–12", note:"Elbows pinned. Squeeze hard at top for peak bicep contraction.", imgs:["i6523"]},
+      {id:"pushdown",       type:"Cable",   name:"Cable pushdown — triceps",machine:"Cable machine",     sets:3, rep:"10–12", note:"Elbows pinned to sides. Push down until arms fully extended.", imgs:[]},
+      {id:"ohp_light",      type:"Machine", name:"Overhead press — lighter",machine:"Prestige Strength", sets:3, rep:"12–15", note:"Drop weight vs Tuesday. Higher reps for shoulder endurance.", imgs:["i6536"]}
     ],
-    rules:["Don't ego-lift — arms are partially fatigued.","Slow, controlled reps beat heavy sloppy ones."],
+    rules:["Don't ego-lift — arms are partially fatigued.","Slow, controlled reps beat heavy sloppy ones."]
   },
-  { day:"Saturday",  focus:"Full back day",  title:"Posterior & Back",  dur:"5 exercises · ~55 min",
+  { id:"sat", day:"Saturday",  focus:"Full back day",  title:"Posterior & Back",  dur:"5 exercises · ~55 min",
     tags:[{l:"Back",c:"#70c890",b:"#40a06015",bc:"#40a06030"},{l:"Posterior",c:"#a0c0a0",b:"#60806015",bc:"#608060"},{l:"Glutes",c:"#e870b0",b:"#c0408015",bc:"#c0408030"}],
     exercises:[
-      {id:"row_sat",       type:"Machine",name:"Seated row",             machine:"Prestige Strength",sets:4,rep:"8–12", note:"Beat your Wednesday weight. Squeeze shoulder blades at end of pull.",imgs:["i6535"]},
-      {id:"pulldown_sat",  type:"Machine",name:"Pulldown — wide grip",   machine:"Prestige Strength",sets:4,rep:"8–12", note:"Second lat session. Progress weight from Wednesday.",imgs:["i6534","i6531"]},
-      {id:"back_ext",      type:"Machine",name:"Back extension",         machine:"Prestige Strength",sets:3,rep:"12–15",note:"Arch back over lumbar pad. Targets erector spinae and lower back.",imgs:["i6544"]},
-      {id:"rear_delt",     type:"Machine",name:"Fly — Rear delt",        machine:"Prestige Strength",sets:3,rep:"12–15",note:"Position B: push handles sideways and to rear. Targets rear deltoids and rhomboids.",imgs:["i6543"]},
-      {id:"hip_abduct_sat",type:"Machine",name:"Hip abduction",          machine:"Cybex VR1",        sets:3,rep:"12–15",note:"Second glute hit. Control the return — slow reps maximise activation.",imgs:["i6542"]},
+      {id:"row_sat",        type:"Machine", name:"Seated row",              machine:"Prestige Strength", sets:4, rep:"8–12",  note:"Beat your Wednesday weight. Squeeze shoulder blades at end of pull.", imgs:["i6535"]},
+      {id:"pulldown_sat",   type:"Machine", name:"Pulldown — wide grip",    machine:"Prestige Strength", sets:4, rep:"8–12",  note:"Second lat session. Progress weight from Wednesday.", imgs:["i6534","i6531"]},
+      {id:"back_ext",       type:"Machine", name:"Back extension",          machine:"Prestige Strength", sets:3, rep:"12–15", note:"Arch back over lumbar pad. Targets erector spinae and lower back.", imgs:["i6544"]},
+      {id:"rear_delt",      type:"Machine", name:"Fly — Rear delt",         machine:"Prestige Strength", sets:3, rep:"12–15", note:"Position B: push handles sideways and to rear. Targets rear deltoids and rhomboids.", imgs:["i6543"]},
+      {id:"hip_abduct_sat", type:"Machine", name:"Hip abduction",           machine:"Cybex VR1",         sets:3, rep:"12–15", note:"Second glute hit. Control the return — slow reps maximise activation.", imgs:["i6542"]}
     ],
-    rules:["Rear delts critical for posture — never skip them.","Back extension protects you on leg press and row days."],
-  },
+    rules:["Rear delts critical for posture — never skip them.","Back extension protects you on leg press and row days."]
+  }
 ];
 
 // ── State ─────────────────────────────────────────────────────────────────────
-let sessions = JSON.parse(localStorage.getItem("gym_sessions_v3")||"[]");
-let activeEx = {};
-let currentTab = 0;
-let selectedExId = schedule[0].exercises[0].id;
+var sessions = [];
+try { sessions = JSON.parse(localStorage.getItem("gym_v4") || "[]"); } catch(e) { sessions = []; }
+var activeEx = {};
+var selectedExId = schedule[0].exercises[0].id;
 
-function save(){ localStorage.setItem("gym_sessions_v3", JSON.stringify(sessions)); }
+function persist() {
+  try { localStorage.setItem("gym_v4", JSON.stringify(sessions)); } catch(e) {}
+}
 
-function rirColor(r){ const n=parseInt(r); if(isNaN(n)||r==="") return "#5a7050"; if(n<=1)return"#5a9e6a"; if(n<=2)return"#c8a84b"; if(n<=3)return"#c87a3a"; return"#c85a4a"; }
-function rirLabel(r){ const n=parseInt(r); if(isNaN(n)||r==="") return ""; if(n===0)return"Failure 🔥"; if(n===1)return"1 RIR — optimal"; if(n===2)return"2 RIR — solid"; if(n===3)return"3 RIR — push more"; return n+" RIR — too easy"; }
+function rirColor(r) {
+  var n = parseInt(r);
+  if (isNaN(n) || r === "") return "#5a7050";
+  if (n <= 1) return "#5a9e6a";
+  if (n <= 2) return "#c8a84b";
+  if (n <= 3) return "#c87a3a";
+  return "#c85a4a";
+}
+function rirLabel(r) {
+  var n = parseInt(r);
+  if (isNaN(n) || r === "") return "";
+  if (n === 0) return "Failure";
+  if (n === 1) return "1 RIR — optimal";
+  if (n === 2) return "2 RIR — solid";
+  if (n === 3) return "3 RIR — push more";
+  return n + " RIR — too easy";
+}
 
 // ── Toast ─────────────────────────────────────────────────────────────────────
-function toast(msg){ const t=document.getElementById("toast"); t.textContent=msg; t.style.display="block"; setTimeout(()=>t.style.display="none",2500); }
+var toastTimer = null;
+function showToast(msg) {
+  var t = document.getElementById("toast");
+  t.textContent = msg;
+  t.classList.add("show");
+  if (toastTimer) clearTimeout(toastTimer);
+  toastTimer = setTimeout(function() { t.classList.remove("show"); }, 2500);
+}
 
-// ── Tabs ──────────────────────────────────────────────────────────────────────
-function showTab(n){
-  currentTab=n;
-  for(let i=0;i<5;i++){
-    document.getElementById("tab"+i).style.display=i===n?"block":"none";
+// ── Tab navigation ────────────────────────────────────────────────────────────
+function showTab(n) {
+  for (var i = 0; i < 5; i++) {
+    document.getElementById("tab" + i).style.display = i === n ? "block" : "none";
   }
-  document.querySelectorAll(".tab-btn").forEach((b,i)=>b.classList.toggle("active",i===n));
+  document.querySelectorAll(".tab-btn").forEach(function(b, i) {
+    b.classList.toggle("active", i === n);
+  });
   updateHeroSub();
-  if(n===4) renderProgress();
+  if (n === 4) renderProgress();
 }
 
-function showSub(tab,sub){
-  const subs=document.querySelectorAll(`#tab${tab} .sub-btn`);
-  subs.forEach((b,i)=>b.classList.toggle("active",i===sub));
-  const panels=document.querySelectorAll(`[id^="sub${tab}_"]`);
-  panels.forEach((p,i)=>p.style.display=i===sub?"block":"none");
+function showSub(tab, idx, btn) {
+  var container = document.getElementById("tab" + tab);
+  container.querySelectorAll(".sub-btn").forEach(function(b) { b.classList.remove("active"); });
+  btn.classList.add("active");
+  var panels = container.querySelectorAll("[id^='sub" + tab + "_']");
+  panels.forEach(function(p, i) { p.style.display = i === idx ? "block" : "none"; });
 }
 
-function updateHeroSub(){
-  document.getElementById("hero-sub").textContent=`5 training days · Sun & Mon rest · ${sessions.length} session${sessions.length!==1?"s":""} logged`;
+function updateHeroSub() {
+  document.getElementById("hero-sub").textContent =
+    "5 training days · Sun & Mon rest · " + sessions.length + " session" + (sessions.length !== 1 ? "s" : "") + " logged";
 }
 
-// ── Build day HTML ─────────────────────────────────────────────────────────────
-function buildDay(d, containerId){
-  const el=document.getElementById(containerId);
-  if(!el||el.dataset.built) return;
-  el.dataset.built="1";
+// ── Build day panel ───────────────────────────────────────────────────────────
+function buildDay(sched, containerId) {
+  var el = document.getElementById(containerId);
+  if (!el) return;
 
-  const loggedCount = d.exercises.filter(e=>activeEx[e.id]).length;
-  const progressHtml = loggedCount>0 ? `<div style="margin-top:.7rem;font-size:11px;color:#5a9e6a">✓ ${loggedCount}/${d.exercises.length} exercises logged</div>` : "";
+  var tagsHtml = sched.tags.map(function(t) {
+    return '<span class="mtag" style="color:' + t.c + ';background:' + t.b + ';border:1px solid ' + t.bc + '">' + t.l + '</span>';
+  }).join("");
 
-  let html = `
-  <div class="day-hero">
-    <div class="weekday">${d.day}</div>
-    <div class="focus">${d.focus}</div>
-    <h2>${d.title}</h2>
-    <div class="dur">${d.dur}</div>
-    <div class="muscle-tags">${d.tags.map(t=>`<span class="mtag" style="color:${t.c};background:${t.b};border:1px solid ${t.bc}">${t.l}</span>`).join("")}</div>
-    <div id="${containerId}_progress">${progressHtml}</div>
-  </div>
-  <div class="ex-list" id="${containerId}_exlist">`;
+  var html = '<div class="day-hero">'
+    + '<div class="weekday">' + sched.day + '</div>'
+    + '<div class="focus">' + sched.focus + '</div>'
+    + '<h2>' + sched.title + '</h2>'
+    + '<div class="dur">' + sched.dur + '</div>'
+    + '<div class="muscle-tags">' + tagsHtml + '</div>'
+    + '<div class="log-progress" id="' + containerId + '_prog" style="display:none"></div>'
+    + '</div>'
+    + '<div class="ex-list">';
 
-  d.exercises.forEach((ex,i) => {
-    const lastS = getLastSets(ex.id);
-    const lastPreview = lastS ? lastS.slice(0,2).map(s=>`${s.weight||"?"}kg×${s.reps||"?"}`).join("  ") : "";
-    const avgRir = lastS ? (lastS.reduce((a,s)=>a+(parseInt(s.rir)||0),0)/lastS.length).toFixed(1) : null;
-    html += `
-    <div class="ex-card" id="excard_${ex.id}">
-      <div class="ex-top" onclick="toggleEx('${ex.id}','${containerId}','${d.day}')">
-        <div style="flex:1;min-width:0">
-          <div class="ex-type">${ex.type}</div>
-          <div class="ex-name">${ex.name} <span class="ex-arrow">▾</span></div>
-          <div class="ex-machine">${ex.machine} · ${ex.rep} reps</div>
-          <div class="ex-logged" id="logged_badge_${ex.id}" style="display:none">✓ Logged today</div>
-          <div class="ex-last" id="last_preview_${ex.id}">${lastPreview ? `Last: ${lastPreview}${avgRir!==null?" <span style=\"color:"+rirColor(Math.round(parseFloat(avgRir)))+";margin-left:6px\">avg "+avgRir+" RIR</span>":""}` : ""}</div>
-        </div>
-        <div class="ex-badge">${ex.sets}×</div>
-      </div>
-      <div class="ex-body" id="exbody_${ex.id}">
-        ${ex.imgs.length?`<div class="ex-imgs">${ex.imgs.map(k=>`<img class="ex-img" src="${IMGS[k]}" alt="${ex.name}">`).join("")}</div>`:""}
-        <div class="ex-note">${ex.note}</div>
-        <div class="log-section" id="logsec_${ex.id}">
-          ${buildLogSection(ex, containerId, d.day)}
-        </div>
-      </div>
-    </div>`;
+  sched.exercises.forEach(function(ex) {
+    html += buildExCard(ex, containerId, sched.day);
   });
 
-  html += `</div>
-  <div style="padding:0 1rem 1.5rem" id="${containerId}_finish" style="display:none">
-    <button class="finish-btn" id="finish_${containerId}" onclick="finishSession('${d.day}','${containerId}')">Save session</button>
-  </div>`;
+  html += '</div>'
+    + '<div class="finish-wrap" id="' + containerId + '_finwrap">'
+    + '<button class="finish-btn" onclick="finishSession(\'' + sched.day + '\',\'' + containerId + '\')">Save session ✓</button>'
+    + '</div>';
 
-  if(d.rules.length){
-    html += `<div class="rules-section"><div class="rules-label">⚠ Session notes</div>${d.rules.map(r=>`<div class="rule-item">! ${r}</div>`).join("")}</div>`;
+  if (sched.rules.length) {
+    html += '<div class="rules-section"><div class="rules-label">&#9888; Session notes</div>';
+    sched.rules.forEach(function(r) { html += '<div class="rule-item">' + r + '</div>'; });
+    html += '</div>';
   }
 
   el.innerHTML = html;
 }
 
-function buildLogSection(ex, containerId, day){
-  const lastS = getLastSets(ex.id);
-  const todayS = activeEx[ex.id];
+function buildExCard(ex, containerId, day) {
+  var lastSets = getLastSets(ex.id);
+  var todaySets = activeEx[ex.id];
 
-  let html = "";
-  if(lastS){
-    html += `<div class="prev-box"><div class="prev-title">📋 Last session — beat this</div>`;
-    lastS.forEach((s,i)=>{
-      html += `<div class="prev-row"><span style="color:var(--text2)">Set ${i+1}: <strong style="color:var(--text)">${s.weight||"?"}kg × ${s.reps||"?"} reps</strong></span>${s.rir!==""&&s.rir!==undefined?`<span style="color:${rirColor(s.rir)};font-weight:600">${rirLabel(s.rir)}</span>`:""}</div>`;
-    });
-    html += `</div>`;
+  var lastPreview = "";
+  if (lastSets) {
+    lastPreview = "Last: " + lastSets.slice(0, 2).map(function(s) {
+      return (s.weight || "?") + "kg×" + (s.reps || "?");
+    }).join("  ");
+    var avgRir = lastSets.reduce(function(a, s) { return a + (parseInt(s.rir) || 0); }, 0) / lastSets.length;
+    if (!isNaN(avgRir)) lastPreview += ' <span style="color:' + rirColor(Math.round(avgRir)) + '">· avg ' + avgRir.toFixed(1) + ' RIR</span>';
   }
 
-  if(todayS){
-    html += `<div class="logged-sets">`;
-    todayS.forEach((s,i)=>{
-      html += `<div class="logged-row"><span style="color:var(--text2)">Set ${i+1}: <span style="color:var(--text)">${s.weight||"?"}kg × ${s.reps||"?"} reps</span></span>${s.rir!==""&&s.rir!==undefined?`<span style="color:${rirColor(s.rir)};font-weight:600">${rirLabel(s.rir)}</span>`:""}</div>`;
+  var imgsHtml = "";
+  if (ex.imgs && ex.imgs.length) {
+    imgsHtml = '<div class="ex-imgs">' + ex.imgs.map(function(k) {
+      return '<img class="ex-img" src="' + IMGS[k] + '" alt="' + ex.name + '">';
+    }).join("") + '</div>';
+  }
+
+  var logHtml = buildLogSection(ex, containerId, day);
+
+  return '<div class="ex-card" id="excard_' + ex.id + '">'
+    + '<div class="ex-top" onclick="toggleCard(\'' + ex.id + '\')">'
+    + '<div style="flex:1;min-width:0">'
+    + '<div class="ex-type">' + ex.type + '</div>'
+    + '<div class="ex-name">' + ex.name + ' <span class="ex-arrow">&#9662;</span></div>'
+    + '<div class="ex-machine">' + ex.machine + ' · ' + ex.rep + ' reps</div>'
+    + '<div class="ex-logged-badge" id="badge_' + ex.id + '">' + (todaySets ? '✓ Logged today' : '') + '</div>'
+    + '<div class="ex-last" id="lastprev_' + ex.id + '" style="' + (todaySets ? 'display:none' : '') + '">' + lastPreview + '</div>'
+    + '</div>'
+    + '<div class="ex-badge">' + ex.sets + '×</div>'
+    + '</div>'
+    + '<div class="ex-body" id="exbody_' + ex.id + '">'
+    + imgsHtml
+    + '<div class="ex-note">' + ex.note + '</div>'
+    + '<div class="log-section" id="logsec_' + ex.id + '">' + logHtml + '</div>'
+    + '</div>'
+    + '</div>';
+}
+
+function buildLogSection(ex, containerId, day) {
+  var lastSets = getLastSets(ex.id);
+  var todaySets = activeEx[ex.id];
+  var html = "";
+
+  if (lastSets) {
+    html += '<div class="prev-box"><div class="prev-title">&#128203; Last session — beat this</div>';
+    lastSets.forEach(function(s, i) {
+      html += '<div class="prev-row">'
+        + '<span style="color:#8a9e7a">Set ' + (i+1) + ': <strong style="color:#e8ead6">' + (s.weight||"?") + 'kg × ' + (s.reps||"?") + ' reps</strong></span>';
+      if (s.rir !== "" && s.rir !== undefined) {
+        html += '<span style="color:' + rirColor(s.rir) + ';font-weight:600">' + rirLabel(s.rir) + '</span>';
+      }
+      html += '</div>';
     });
-    html += `</div><button class="btn-ghost" onclick="startLogging('${ex.id}','${containerId}','${day}',${ex.sets})">Edit</button>`;
+    html += '</div>';
+  }
+
+  if (todaySets) {
+    html += '<div class="logged-display">';
+    todaySets.forEach(function(s, i) {
+      html += '<div class="logged-row">'
+        + '<span style="color:#8a9e7a">Set ' + (i+1) + ': <span style="color:#e8ead6">' + (s.weight||"?") + 'kg × ' + (s.reps||"?") + ' reps</span></span>';
+      if (s.rir !== "" && s.rir !== undefined) {
+        html += '<span style="color:' + rirColor(s.rir) + ';font-weight:600">' + rirLabel(s.rir) + '</span>';
+      }
+      html += '</div>';
+    });
+    html += '</div><button class="btn-ghost" onclick="startLogging(\'' + ex.id + '\',\'' + containerId + '\',\'' + day + '\',' + ex.sets + ')">Edit</button>';
   } else {
-    html += `<button class="btn-log" onclick="startLogging('${ex.id}','${containerId}','${day}',${ex.sets})">+ Log this exercise</button>`;
+    html += '<button class="btn-log" onclick="startLogging(\'' + ex.id + '\',\'' + containerId + '\',\'' + day + '\',' + ex.sets + '\')">+ Log this exercise</button>';
   }
+
   return html;
 }
 
-function getLastSets(exId){
-  for(let i=sessions.length-1;i>=0;i--){
-    if(sessions[i].exercises?.[exId]) return sessions[i].exercises[exId];
+function toggleCard(exId) {
+  var card = document.getElementById("excard_" + exId);
+  card.classList.toggle("open");
+}
+
+// ── Logging ───────────────────────────────────────────────────────────────────
+function startLogging(exId, containerId, day, numSets) {
+  var lastSets = getLastSets(exId);
+  var todaySets = activeEx[exId];
+  var initSets = todaySets ? JSON.parse(JSON.stringify(todaySets))
+    : Array.from({length: numSets}, function(_, i) {
+        return { weight: lastSets && lastSets[i] ? lastSets[i].weight : "", reps: lastSets && lastSets[i] ? lastSets[i].reps : "", rir: "" };
+      });
+
+  var html = '<div class="log-title">Log sets · Target: last set → 1 RIR</div>';
+
+  if (lastSets) {
+    html += '<div class="prev-box"><div class="prev-title">&#128203; Last session — beat this</div>';
+    lastSets.forEach(function(s, i) {
+      html += '<div class="prev-row"><span>Set ' + (i+1) + ': <strong style="color:#e8ead6">' + (s.weight||"?") + 'kg × ' + (s.reps||"?") + '</strong></span>';
+      if (s.rir !== "" && s.rir !== undefined) html += '<span style="color:' + rirColor(s.rir) + ';font-size:11px">' + rirLabel(s.rir) + '</span>';
+      html += '</div>';
+    });
+    html += '</div>';
+  }
+
+  html += '<div class="set-rows" id="setrows_' + exId + '">';
+  initSets.forEach(function(s, i) {
+    html += buildSetRow(exId, i, s.weight, s.reps, s.rir);
+  });
+  html += '</div>';
+  html += '<div class="btn-row">'
+    + '<button class="btn-ghost" onclick="addSetRow(\'' + exId + '\')">+ Set</button>'
+    + '<button class="btn-accent" onclick="saveExSets(\'' + exId + '\',\'' + containerId + '\',\'' + day + '\')">Save ✓</button>'
+    + '<button class="btn-ghost" onclick="cancelLogging(\'' + exId + '\',\'' + containerId + '\',\'' + day + '\')">Cancel</button>'
+    + '</div>';
+
+  document.getElementById("logsec_" + exId).innerHTML = html;
+}
+
+function buildSetRow(exId, i, weight, reps, rir) {
+  var rirCol = rir !== "" ? rirColor(rir) : "#2a3d24";
+  var rirTxt = rir !== "" ? (" · " + rirLabel(rir).split("—")[0].trim()) : "";
+  return '<div class="set-row" id="setrow_' + exId + '_' + i + '">'
+    + '<span class="set-num">S' + (i+1) + '</span>'
+    + '<div class="field-wrap"><div class="field-label">kg</div><input class="field-input" type="number" id="w_' + exId + '_' + i + '" value="' + (weight||"") + '" placeholder="kg"></div>'
+    + '<div class="field-wrap"><div class="field-label">reps</div><input class="field-input" type="number" id="r_' + exId + '_' + i + '" value="' + (reps||"") + '" placeholder="reps"></div>'
+    + '<div class="field-wrap">'
+    + '<div class="field-label" id="rirlbl_' + exId + '_' + i + '" style="color:' + (rir !== "" ? rirColor(rir) : "#5a7050") + '">RIR' + rirTxt + '</div>'
+    + '<select class="rir-select" id="rir_' + exId + '_' + i + '" onchange="onRirChange(\'' + exId + '\',' + i + ')" style="border-color:' + rirCol + ';color:' + (rir !== "" ? rirColor(rir) : "#e8ead6") + '">'
+    + '<option value="">— pick</option>'
+    + '<option value="0"' + (rir==="0"?" selected":"") + '>0 — Failure</option>'
+    + '<option value="1"' + (rir==="1"?" selected":"") + '>1 — Optimal</option>'
+    + '<option value="2"' + (rir==="2"?" selected":"") + '>2 — Solid</option>'
+    + '<option value="3"' + (rir==="3"?" selected":"") + '>3 — Push more</option>'
+    + '<option value="4"' + (rir==="4"?" selected":"") + '>4 — Too easy</option>'
+    + '<option value="5"' + (rir==="5"?" selected":"") + '>5+ — Way too easy</option>'
+    + '</select></div></div>';
+}
+
+function onRirChange(exId, i) {
+  var sel = document.getElementById("rir_" + exId + "_" + i);
+  var lbl = document.getElementById("rirlbl_" + exId + "_" + i);
+  var val = sel.value;
+  var col = val !== "" ? rirColor(val) : "#5a7050";
+  sel.style.borderColor = val !== "" ? col : "#2a3d24";
+  sel.style.color = val !== "" ? col : "#e8ead6";
+  lbl.style.color = col;
+  lbl.textContent = "RIR" + (val !== "" ? " · " + rirLabel(val).split("—")[0].trim() : "");
+}
+
+function addSetRow(exId) {
+  var rows = document.getElementById("setrows_" + exId);
+  var i = rows.querySelectorAll(".set-row").length;
+  var div = document.createElement("div");
+  div.innerHTML = buildSetRow(exId, i, "", "", "");
+  rows.appendChild(div.firstElementChild);
+}
+
+function saveExSets(exId, containerId, day) {
+  var rows = document.getElementById("setrows_" + exId);
+  var setEls = rows.querySelectorAll(".set-row");
+  var sets = [];
+  setEls.forEach(function(_, i) {
+    var w = document.getElementById("w_" + exId + "_" + i);
+    var r = document.getElementById("r_" + exId + "_" + i);
+    var rir = document.getElementById("rir_" + exId + "_" + i);
+    if (w && (w.value || (r && r.value))) {
+      sets.push({ weight: w ? w.value : "", reps: r ? r.value : "", rir: rir ? rir.value : "" });
+    }
+  });
+  if (!sets.length) return;
+
+  activeEx[exId] = sets;
+
+  // Update badge and last preview
+  var badge = document.getElementById("badge_" + exId);
+  var lastprev = document.getElementById("lastprev_" + exId);
+  if (badge) { badge.textContent = "✓ Logged today"; badge.style.display = "block"; }
+  if (lastprev) lastprev.style.display = "none";
+
+  // Rebuild log section
+  var sched = getSchedForDay(day);
+  var ex = sched ? sched.exercises.find(function(e) { return e.id === exId; }) : null;
+  if (ex) document.getElementById("logsec_" + exId).innerHTML = buildLogSection(ex, containerId, day);
+
+  // Update progress indicator and finish button
+  updateDayProgress(containerId, day);
+  showToast("Sets saved ✓");
+}
+
+function cancelLogging(exId, containerId, day) {
+  var sched = getSchedForDay(day);
+  var ex = sched ? sched.exercises.find(function(e) { return e.id === exId; }) : null;
+  if (ex) document.getElementById("logsec_" + exId).innerHTML = buildLogSection(ex, containerId, day);
+}
+
+function updateDayProgress(containerId, day) {
+  var sched = getSchedForDay(day);
+  if (!sched) return;
+  var total = sched.exercises.length;
+  var logged = sched.exercises.filter(function(e) { return activeEx[e.id]; }).length;
+  var prog = document.getElementById(containerId + "_prog");
+  var finwrap = document.getElementById(containerId + "_finwrap");
+
+  if (prog) {
+    if (logged > 0) {
+      prog.style.display = "block";
+      prog.textContent = "✓ " + logged + "/" + total + " exercises logged";
+    } else {
+      prog.style.display = "none";
+    }
+  }
+
+  // Only show finish button if at least 1 exercise is logged
+  if (finwrap) {
+    finwrap.style.display = logged > 0 ? "block" : "none";
+  }
+}
+
+function finishSession(day, containerId) {
+  var sched = getSchedForDay(day);
+  if (!sched) return;
+  var logged = sched.exercises.filter(function(e) { return activeEx[e.id]; }).length;
+  if (logged === 0) return;
+
+  var sess = { date: new Date().toISOString(), day: day, exercises: JSON.parse(JSON.stringify(activeEx)) };
+  sessions.push(sess);
+  persist();
+  activeEx = {};
+  updateHeroSub();
+  showToast(day + " session saved! 💪");
+
+  // Rebuild the day panel fresh
+  buildDay(sched, containerId);
+  updateDayProgress(containerId, day);
+}
+
+// ── Helpers ───────────────────────────────────────────────────────────────────
+function getLastSets(exId) {
+  for (var i = sessions.length - 1; i >= 0; i--) {
+    if (sessions[i].exercises && sessions[i].exercises[exId]) return sessions[i].exercises[exId];
   }
   return null;
 }
 
-function toggleEx(exId, containerId, day){
-  const card=document.getElementById("excard_"+exId);
-  card.classList.toggle("open");
+function getSchedForDay(day) {
+  return schedule.find(function(s) { return s.day === day; }) || null;
 }
 
-function startLogging(exId, containerId, day, numSets){
-  const lastS = getLastSets(exId);
-  const todayS = activeEx[exId];
-  const initSets = todayS ? [...todayS] : Array.from({length:numSets},(_,i)=>({weight:lastS?.[i]?.weight||"",reps:lastS?.[i]?.reps||"",rir:""}));
+function getAllExercises() {
+  var all = [];
+  schedule.forEach(function(s) { s.exercises.forEach(function(e) { all.push(e); }); });
+  return all;
+}
 
-  let html = `<div class="log-title">Log sets · last set → aim for 1 RIR</div>`;
-  if(lastS){
-    html += `<div class="prev-box"><div class="prev-title">📋 Last session — beat this</div>`;
-    lastS.forEach((s,i)=>{
-      html += `<div class="prev-row"><span>Set ${i+1}: <strong style="color:var(--text)">${s.weight||"?"}kg × ${s.reps||"?"}</strong></span>${s.rir!==""&&s.rir!==undefined?`<span style="color:${rirColor(s.rir)};font-weight:600;font-size:11px">${rirLabel(s.rir)}</span>`:""}</div>`;
-    });
-    html += `</div>`;
-  }
-  html += `<div class="set-rows" id="setrows_${exId}">`;
-  initSets.forEach((s,i)=>{
-    html += setRowHtml(exId,i,s.weight,s.reps,s.rir);
+// ── Progress tab ──────────────────────────────────────────────────────────────
+function renderProgress() {
+  var allEx = getAllExercises();
+  document.getElementById("prog-sub").textContent = sessions.length + " session" + (sessions.length !== 1 ? "s" : "") + " logged";
+
+  // Streak
+  var streak = calcStreak();
+  document.getElementById("streak-num").textContent = streak;
+  document.getElementById("streak-sub").textContent = streak === 0
+    ? "Log your first session to start"
+    : streak === 1 ? "Keep it going next week!" : streak + " weeks consistent — great work";
+
+  // Ex picker
+  var picks = document.getElementById("ex-picks");
+  picks.innerHTML = allEx.map(function(ex) {
+    return '<button class="ex-pick' + (ex.id === selectedExId ? " active" : "") + '" onclick="selectEx(\'' + ex.id + '\')">' + ex.name + '</button>';
+  }).join("");
+
+  renderCharts();
+  renderHistory(allEx);
+}
+
+function selectEx(exId) {
+  selectedExId = exId;
+  document.querySelectorAll(".ex-pick").forEach(function(b) {
+    var allEx = getAllExercises();
+    var ex = allEx.find(function(e) { return e.id === exId; });
+    b.classList.toggle("active", b.textContent === (ex ? ex.name : ""));
   });
-  html += `</div>
-  <div class="btn-row">
-    <button class="btn-ghost" onclick="addSetRow('${exId}')">+ Set</button>
-    <button class="btn-accent" onclick="saveExSets('${exId}','${containerId}','${day}')">Save ✓</button>
-    <button class="btn-ghost" onclick="rebuildLogSection('${exId}','${containerId}','${day}')">Cancel</button>
-  </div>`;
-
-  document.getElementById("logsec_"+exId).innerHTML = html;
+  renderCharts();
 }
 
-function setRowHtml(exId,i,weight,reps,rir){
-  return `<div class="set-row" id="setrow_${exId}_${i}">
-    <span class="set-num">S${i+1}</span>
-    <div class="field-wrap"><div class="field-label">kg</div><input class="field-input" type="number" id="w_${exId}_${i}" value="${weight}" placeholder="kg"></div>
-    <div class="field-wrap"><div class="field-label">reps</div><input class="field-input" type="number" id="r_${exId}_${i}" value="${reps}" placeholder="reps"></div>
-    <div class="field-wrap">
-      <div class="field-label" id="rirlabel_${exId}_${i}" style="color:${rirColor(rir)}">RIR${rir!==""?" · "+rirLabel(rir).split("—")[0].trim():""}</div>
-      <select class="rir-select" id="rir_${exId}_${i}" onchange="updateRirLabel('${exId}',${i})" style="border-color:${rir!==""?rirColor(rir):"var(--border)"};color:${rir!==""?rirColor(rir):"var(--text)"}">
-        <option value="" ${rir===""?"selected":""}>— pick</option>
-        <option value="0" ${rir==="0"?"selected":""}>0 — Failure</option>
-        <option value="1" ${rir==="1"?"selected":""}>1 — Optimal</option>
-        <option value="2" ${rir==="2"?"selected":""}>2 — Solid</option>
-        <option value="3" ${rir==="3"?"selected":""}>3 — Push more</option>
-        <option value="4" ${rir==="4"?"selected":""}>4 — Too easy</option>
-        <option value="5" ${rir==="5"?"selected":""}>5+ — Way too easy</option>
-      </select>
-    </div>
-  </div>`;
-}
+function renderCharts() {
+  var allEx = getAllExercises();
+  var ex = allEx.find(function(e) { return e.id === selectedExId; });
+  var name = ex ? ex.name : "";
 
-function updateRirLabel(exId,i){
-  const sel=document.getElementById("rir_"+exId+"_"+i);
-  const val=sel.value;
-  const col=rirColor(val);
-  sel.style.borderColor=val!==""?col:"var(--border)";
-  sel.style.color=val!==""?col:"var(--text)";
-  const lbl=document.getElementById("rirlabel_"+exId+"_"+i);
-  lbl.style.color=col;
-  lbl.textContent="RIR"+(val!==""?" · "+rirLabel(val).split("—")[0].trim():"");
-}
+  document.getElementById("chart-weight-title").textContent = name + " — max weight per session (kg)";
+  document.getElementById("chart-weight").innerHTML = svgChart(weightData(selectedExId), "#5a9e6a");
 
-function addSetRow(exId){
-  const rows=document.getElementById("setrows_"+exId);
-  const i=rows.children.length;
-  const div=document.createElement("div");
-  const tmp=document.createElement("div");
-  tmp.innerHTML=setRowHtml(exId,i,"","","");
-  rows.appendChild(tmp.firstElementChild);
-}
-
-function saveExSets(exId, containerId, day){
-  const rows=document.getElementById("setrows_"+exId);
-  const sets=[];
-  for(let i=0;i<rows.children.length;i++){
-    const w=document.getElementById("w_"+exId+"_"+i)?.value||"";
-    const r=document.getElementById("r_"+exId+"_"+i)?.value||"";
-    const rir=document.getElementById("rir_"+exId+"_"+i)?.value||"";
-    if(w||r) sets.push({weight:w,reps:r,rir});
+  var rd = rirData(selectedExId);
+  var rirWrap = document.getElementById("chart-rir-wrap");
+  if (rd.length >= 2) {
+    document.getElementById("chart-rir-title").textContent = name + " — avg RIR per session";
+    document.getElementById("chart-rir").innerHTML = svgChart(rd, "#c8a84b");
+    rirWrap.style.display = "block";
+  } else {
+    rirWrap.style.display = "none";
   }
-  if(!sets.length) return;
-  activeEx[exId]=sets;
-  rebuildLogSection(exId,containerId,day);
-  updateFinishButton(containerId,day);
-  document.getElementById("logged_badge_"+exId).style.display="block";
-  document.getElementById("last_preview_"+exId).style.display="none";
-  toast("Sets saved ✓");
 }
 
-function rebuildLogSection(exId, containerId, day){
-  const dayData=schedule.find(d=>d.day===day);
-  const ex=dayData?.exercises.find(e=>e.id===exId);
-  if(ex) document.getElementById("logsec_"+exId).innerHTML=buildLogSection(ex,containerId,day);
-}
-
-function updateFinishButton(containerId, day){
-  const dayData=schedule.find(d=>d.day===day);
-  const loggedIds=dayData.exercises.filter(e=>activeEx[e.id]).map(e=>e.id);
-  const allDone=dayData.exercises.every(e=>activeEx[e.id]);
-  const wrap=document.getElementById(containerId+"_finish");
-  const btn=document.getElementById("finish_"+containerId);
-  if(wrap) wrap.style.display="block";
-  if(btn){
-    btn.className="finish-btn"+(allDone?" ready":"");
-    btn.textContent=allDone?"✓ Complete & save session":`Save session (${loggedIds.length}/${dayData.exercises.length} done)`;
-  }
-  const prog=document.getElementById(containerId+"_progress");
-  if(prog) prog.innerHTML=`<div style="margin-top:.7rem;font-size:11px;color:#5a9e6a">✓ ${loggedIds.length}/${dayData.exercises.length} exercises logged</div>`;
-}
-
-function finishSession(day, containerId){
-  const dayData=schedule.find(d=>d.day===day);
-  const sess={date:new Date().toISOString(),day,exercises:{...activeEx}};
-  sessions.push(sess);
-  save();
-  activeEx={};
-  toast(`${day} session saved! 💪`);
-  updateHeroSub();
-  // reset built flag so day rebuilds fresh
-  const el=document.getElementById(containerId);
-  if(el) el.dataset.built="";
-  el.innerHTML="";
-  buildDay(dayData,containerId);
-  document.getElementById(containerId+"_finish").style.display="none";
-}
-
-// ── Progress ───────────────────────────────────────────────────────────────────
-function calcStreak(){
-  if(!sessions.length) return 0;
-  const weeks=new Set(sessions.map(s=>{const d=new Date(s.date);const st=new Date(d);st.setDate(d.getDate()-d.getDay());return st.toDateString();}));
-  const sorted=[...weeks].map(w=>new Date(w)).sort((a,b)=>b-a);
-  let streak=0;let cur=new Date();cur.setDate(cur.getDate()-cur.getDay());
-  for(const w of sorted){if(Math.abs(cur-w)<=7*24*60*60*1000){streak++;cur=new Date(w);cur.setDate(cur.getDate()-7);}else break;}
-  return streak;
-}
-
-function chartData(exId){
-  return sessions.filter(s=>s.exercises?.[exId]?.length).map(s=>{
-    const sets=s.exercises[exId];
-    const maxW=Math.max(...sets.map(s=>parseFloat(s.weight)||0));
-    return {date:new Date(s.date).toLocaleDateString("en-GB",{day:"numeric",month:"short"}),val:maxW};
+function weightData(exId) {
+  return sessions.filter(function(s) { return s.exercises && s.exercises[exId] && s.exercises[exId].length; }).map(function(s) {
+    var sets = s.exercises[exId];
+    var maxW = Math.max.apply(null, sets.map(function(st) { return parseFloat(st.weight) || 0; }));
+    return { date: new Date(s.date).toLocaleDateString("en-GB", {day:"numeric",month:"short"}), val: maxW };
   });
 }
-function rirData(exId){
-  return sessions.filter(s=>s.exercises?.[exId]?.length).map(s=>{
-    const sets=s.exercises[exId].filter(s=>s.rir!=="");
-    if(!sets.length)return null;
-    const avg=sets.reduce((a,s)=>a+(parseInt(s.rir)||0),0)/sets.length;
-    return {date:new Date(s.date).toLocaleDateString("en-GB",{day:"numeric",month:"short"}),val:parseFloat(avg.toFixed(1))};
+
+function rirData(exId) {
+  return sessions.filter(function(s) { return s.exercises && s.exercises[exId] && s.exercises[exId].length; }).map(function(s) {
+    var sets = s.exercises[exId].filter(function(st) { return st.rir !== ""; });
+    if (!sets.length) return null;
+    var avg = sets.reduce(function(a, st) { return a + (parseInt(st.rir) || 0); }, 0) / sets.length;
+    return { date: new Date(s.date).toLocaleDateString("en-GB", {day:"numeric",month:"short"}), val: parseFloat(avg.toFixed(1)) };
   }).filter(Boolean);
 }
 
-function svgChart(data,color){
-  if(!data||data.length<2) return `<div class="chart-empty">Log 2+ sessions to see chart</div>`;
-  const vals=data.map(d=>d.val);
-  const mn=Math.min(...vals);const mx=Math.max(...vals);const range=mx-mn||1;
-  const W=300;const H=80;
-  const pts=vals.map((v,i)=>{const x=(i/(vals.length-1))*(W-20)+10;const y=H-((v-mn)/range)*(H-16)-8;return`${x},${y}`;});
-  const circles=vals.map((v,i)=>{const[x,y]=pts[i].split(",");return`<circle cx="${x}" cy="${y}" r="3" fill="${color}"/>`;}).join("");
-  const labels=`<div style="display:flex;justify-content:space-between;margin-top:2px"><span style="font-size:10px;color:var(--text3)">${data[0].date}</span><span style="font-size:10px;color:${color};font-weight:600">Latest: ${vals[vals.length-1]}</span><span style="font-size:10px;color:var(--text3)">${data[data.length-1].date}</span></div>`;
-  return `<svg viewBox="0 0 ${W} ${H}" style="width:100%;height:80px;overflow:visible"><polyline points="${pts.join(" ")}" fill="none" stroke="${color}" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>${circles}</svg>${labels}`;
-}
-
-function renderProgress(){
-  const allEx=schedule.flatMap(d=>d.exercises);
-  document.getElementById("prog-sub").textContent=`${sessions.length} session${sessions.length!==1?"s":""} logged`;
-  const streak=calcStreak();
-  document.getElementById("streak-num").textContent=streak;
-  document.getElementById("streak-sub").textContent=streak===0?"Log your first session to start":streak===1?"Keep it going next week!":streak+" weeks consistent — great work";
-
-  // Ex picker
-  const picks=document.getElementById("ex-picks");
-  picks.innerHTML=allEx.map(ex=>`<button class="ex-pick${ex.id===selectedExId?" active":""}" onclick="selectEx('${ex.id}')">${ex.name}</button>`).join("");
-
-  renderCharts();
-
-  // History
-  const hist=document.getElementById("session-history");
-  if(!sessions.length){hist.innerHTML=`<div class="empty-state">No sessions logged yet.<br>Head to a training day and tap<br>"Log this exercise".</div>`;return;}
-  hist.innerHTML=[...sessions].reverse().map(sess=>{
-    const dayData=schedule.find(d=>d.day===sess.day);
-    const exIds=Object.keys(sess.exercises||{});
-    const exHtml=exIds.map(id=>{
-      const ex=allEx.find(e=>e.id===id);
-      const sets=sess.exercises[id];
-      const avgRirV=sets.filter(s=>s.rir!=="").length?(sets.filter(s=>s.rir!=="").reduce((a,s)=>a+(parseInt(s.rir)||0),0)/sets.filter(s=>s.rir!=="").length).toFixed(1):null;
-      return `<div class="sess-ex"><span style="color:var(--text2)">${ex?.name}: </span><span style="color:var(--text)">${sets.map(s=>`${s.weight||"?"}kg×${s.reps||"?"}`).join("  ")}</span>${avgRirV!==null?"<span style='color:"+rirColor(Math.round(parseFloat(avgRirV)))+";margin-left:6px;font-weight:600'> avg "+avgRirV+" RIR</span>":""}</div>`;
-    }).join("");
-    return `<div class="sess-card"><div class="sess-date">${new Date(sess.date).toLocaleDateString("en-GB",{weekday:"long",day:"numeric",month:"long",year:"numeric"})}</div><div class="sess-day">${sess.day} — ${dayData?.title||""}</div>${exHtml}</div>`;
+function svgChart(data, color) {
+  if (!data || data.length < 2) return '<div class="chart-empty">Log 2+ sessions to see chart</div>';
+  var vals = data.map(function(d) { return d.val; });
+  var mn = Math.min.apply(null, vals);
+  var mx = Math.max.apply(null, vals);
+  var range = mx - mn || 1;
+  var W = 300; var H = 80;
+  var pts = vals.map(function(v, i) {
+    var x = (i / (vals.length - 1)) * (W - 20) + 10;
+    var y = H - ((v - mn) / range) * (H - 16) - 8;
+    return x + "," + y;
+  });
+  var circles = vals.map(function(v, i) {
+    var parts = pts[i].split(",");
+    return '<circle cx="' + parts[0] + '" cy="' + parts[1] + '" r="3" fill="' + color + '"/>';
   }).join("");
+  var labels = '<div style="display:flex;justify-content:space-between;margin-top:2px">'
+    + '<span style="font-size:10px;color:#5a7050">' + data[0].date + '</span>'
+    + '<span style="font-size:10px;color:' + color + ';font-weight:600">Latest: ' + vals[vals.length-1] + '</span>'
+    + '<span style="font-size:10px;color:#5a7050">' + data[data.length-1].date + '</span></div>';
+  return '<svg viewBox="0 0 ' + W + ' ' + H + '" style="width:100%;height:80px;overflow:visible">'
+    + '<polyline points="' + pts.join(" ") + '" fill="none" stroke="' + color + '" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>'
+    + circles + '</svg>' + labels;
 }
 
-function selectEx(exId){
-  selectedExId=exId;
-  document.querySelectorAll(".ex-pick").forEach(b=>b.classList.toggle("active",b.textContent===schedule.flatMap(d=>d.exercises).find(e=>e.id===exId)?.name));
-  renderCharts();
+function renderHistory(allEx) {
+  var hist = document.getElementById("session-history");
+  if (!sessions.length) {
+    hist.innerHTML = '<div class="empty-state">No sessions logged yet.<br>Head to a training day and tap<br>"Log this exercise".</div>';
+    return;
+  }
+  var html = "";
+  var rev = sessions.slice().reverse();
+  rev.forEach(function(sess) {
+    var sched = schedule.find(function(s) { return s.day === sess.day; });
+    var exIds = Object.keys(sess.exercises || {});
+    var exHtml = exIds.map(function(id) {
+      var ex = allEx.find(function(e) { return e.id === id; });
+      var sets = sess.exercises[id];
+      var setsStr = sets.map(function(s) { return (s.weight||"?") + "kg×" + (s.reps||"?"); }).join("  ");
+      var rirSets = sets.filter(function(s) { return s.rir !== ""; });
+      var avgRir = rirSets.length ? (rirSets.reduce(function(a,s) { return a+(parseInt(s.rir)||0); },0)/rirSets.length).toFixed(1) : null;
+      var rirStr = avgRir !== null ? ' <span style="color:' + rirColor(Math.round(parseFloat(avgRir))) + ';font-weight:600">· avg ' + avgRir + ' RIR</span>' : "";
+      return '<div class="sess-ex"><span style="color:#8a9e7a">' + (ex ? ex.name : id) + ': </span><span style="color:#e8ead6">' + setsStr + '</span>' + rirStr + '</div>';
+    }).join("");
+    html += '<div class="sess-card">'
+      + '<div class="sess-date">' + new Date(sess.date).toLocaleDateString("en-GB",{weekday:"long",day:"numeric",month:"long",year:"numeric"}) + '</div>'
+      + '<div class="sess-day">' + sess.day + ' — ' + (sched ? sched.title : "") + '</div>'
+      + exHtml + '</div>';
+  });
+  hist.innerHTML = html;
 }
 
-function renderCharts(){
-  const ex=schedule.flatMap(d=>d.exercises).find(e=>e.id===selectedExId);
-  document.getElementById("chart-title").textContent=`${ex?.name||""} — max weight per session (kg)`;
-  document.getElementById("weight-chart").innerHTML=svgChart(chartData(selectedExId),"#5a9e6a");
-  const rd=rirData(selectedExId);
-  const rirWrap=document.getElementById("rir-chart-wrap");
-  document.getElementById("rir-chart-title").textContent=`${ex?.name||""} — avg RIR per session`;
-  document.getElementById("rir-chart").innerHTML=svgChart(rd,"#c8a84b");
-  rirWrap.style.display=rd.length>=1?"block":"none";
+function calcStreak() {
+  if (!sessions.length) return 0;
+  var weeks = {};
+  sessions.forEach(function(s) {
+    var d = new Date(s.date);
+    var start = new Date(d);
+    start.setDate(d.getDate() - d.getDay());
+    weeks[start.toDateString()] = true;
+  });
+  var sorted = Object.keys(weeks).map(function(w) { return new Date(w); }).sort(function(a,b) { return b-a; });
+  var streak = 0;
+  var cur = new Date();
+  cur.setDate(cur.getDate() - cur.getDay());
+  for (var i = 0; i < sorted.length; i++) {
+    if (Math.abs(cur - sorted[i]) <= 7 * 24 * 60 * 60 * 1000) {
+      streak++;
+      cur = new Date(sorted[i]);
+      cur.setDate(cur.getDate() - 7);
+    } else break;
+  }
+  return streak;
 }
 
 // ── Init ──────────────────────────────────────────────────────────────────────
-// Build all day panels
-const panels=[
-  {id:"sub1_0",sched:0},{id:"sub1_1",sched:1},
-  {id:"sub2_0",sched:2},{id:"sub2_1",sched:3},
-  {id:"sub3_0",sched:4}
-];
-panels.forEach(p=>buildDay(schedule[p.sched],p.id));
+buildDay(schedule[0], "sub1_0");
+buildDay(schedule[1], "sub1_1");
+buildDay(schedule[2], "sub2_0");
+buildDay(schedule[3], "sub2_1");
+buildDay(schedule[4], "sub3_0");
 updateHeroSub();
 
-// Register service worker
-if("serviceWorker" in navigator){
-  navigator.serviceWorker.register("sw.js").catch(()=>{});
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker.register("sw.js").catch(function() {});
 }
 </script>
 </body>
