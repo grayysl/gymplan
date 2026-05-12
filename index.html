@@ -401,31 +401,48 @@ function showToast(msg) {
 
 // ── Tab navigation ────────────────────────────────────────────────────────────
 function showTab(n) {
-  for (var i = 0; i < 5; i++) {
-    document.getElementById("tab" + i).style.display = i === n ? "block" : "none";
+  var tabIds = ["tab0","tab1","tab2","tab3","tab4"];
+  for (var i = 0; i < tabIds.length; i++) {
+    document.getElementById(tabIds[i]).style.display = i === n ? "block" : "none";
   }
-  document.querySelectorAll(".tab-btn").forEach(function(b, i) {
-    b.classList.toggle("active", i === n);
-  });
+  var tabBtns = document.querySelectorAll(".tab-btn");
+  for (var j = 0; j < tabBtns.length; j++) {
+    tabBtns[j].classList.toggle("active", j === n);
+  }
   updateHeroSub();
   if (n === 4) renderProgress();
 }
 
 function showSub(tab, idx, btn) {
+  // Update sub-tab button styles
   var container = document.getElementById("tab" + tab);
-  container.querySelectorAll(".sub-btn").forEach(function(b) { b.classList.remove("active"); });
+  var subBtns = container.getElementsByClassName("sub-btn");
+  for (var i = 0; i < subBtns.length; i++) {
+    subBtns[i].classList.remove("active");
+  }
   btn.classList.add("active");
-  var panels = container.querySelectorAll("[id^='sub" + tab + "_']");
-  panels.forEach(function(p, i) {
-    p.style.display = i === idx ? "block" : "none";
-  });
-  // Build panel if not yet built
-  var panelId = "sub" + tab + "_" + idx;
-  var panel = document.getElementById(panelId);
-  if (panel && panel.innerHTML.trim() === "") {
-    var schedMap = { "sub1_0": 0, "sub1_1": 1, "sub2_0": 2, "sub2_1": 3, "sub3_0": 4 };
-    var schedIdx = schedMap[panelId];
-    if (schedIdx !== undefined) buildDay(schedule[schedIdx], panelId);
+
+  // Map of all panels per tab
+  var tabPanels = {
+    1: ["sub1_0", "sub1_1"],
+    2: ["sub2_0", "sub2_1"],
+    3: ["sub3_0"]
+  };
+  var panels = tabPanels[tab] || [];
+  for (var j = 0; j < panels.length; j++) {
+    var p = document.getElementById(panels[j]);
+    if (p) p.style.display = j === idx ? "block" : "none";
+  }
+
+  // Build the panel if it hasn't been built yet
+  var panelId = panels[idx];
+  if (panelId) {
+    var panel = document.getElementById(panelId);
+    if (panel && panel.innerHTML.trim() === "") {
+      var schedMap = { "sub1_0": 0, "sub1_1": 1, "sub2_0": 2, "sub2_1": 3, "sub3_0": 4 };
+      var schedIdx = schedMap[panelId];
+      if (schedIdx !== undefined) buildDay(schedule[schedIdx], panelId);
+    }
   }
 }
 
