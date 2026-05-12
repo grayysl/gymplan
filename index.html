@@ -416,7 +416,17 @@ function showSub(tab, idx, btn) {
   container.querySelectorAll(".sub-btn").forEach(function(b) { b.classList.remove("active"); });
   btn.classList.add("active");
   var panels = container.querySelectorAll("[id^='sub" + tab + "_']");
-  panels.forEach(function(p, i) { p.style.display = i === idx ? "block" : "none"; });
+  panels.forEach(function(p, i) {
+    p.style.display = i === idx ? "block" : "none";
+  });
+  // Build panel if not yet built
+  var panelId = "sub" + tab + "_" + idx;
+  var panel = document.getElementById(panelId);
+  if (panel && panel.innerHTML.trim() === "") {
+    var schedMap = { "sub1_0": 0, "sub1_1": 1, "sub2_0": 2, "sub2_1": 3, "sub3_0": 4 };
+    var schedIdx = schedMap[panelId];
+    if (schedIdx !== undefined) buildDay(schedule[schedIdx], panelId);
+  }
 }
 
 function updateHeroSub() {
@@ -859,10 +869,9 @@ function calcStreak() {
 }
 
 // ── Init ──────────────────────────────────────────────────────────────────────
+// Only build the first visible panel of each tab on load
 buildDay(schedule[0], "sub1_0");
-buildDay(schedule[1], "sub1_1");
 buildDay(schedule[2], "sub2_0");
-buildDay(schedule[3], "sub2_1");
 buildDay(schedule[4], "sub3_0");
 updateHeroSub();
 
