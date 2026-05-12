@@ -6,6 +6,8 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="Gym Plan">
+<meta name="apple-touch-fullscreen" content="yes">
+<link rel="canonical" href="https://grayysl.github.io/gymplan/">
 <meta name="theme-color" content="#0f1a14">
 <link rel="manifest" href="manifest.json">
 <link rel="apple-touch-icon" href="icon.png">
@@ -402,7 +404,7 @@ function buildDay(d, containerId){
           <div class="ex-name">${ex.name} <span class="ex-arrow">▾</span></div>
           <div class="ex-machine">${ex.machine} · ${ex.rep} reps</div>
           <div class="ex-logged" id="logged_badge_${ex.id}" style="display:none">✓ Logged today</div>
-          <div class="ex-last" id="last_preview_${ex.id}">${lastPreview ? `Last: ${lastPreview}${avgRir!==null?` <span style="color:${rirColor(Math.round(parseFloat(avgRir)));margin-left:6px">avg ${avgRir} RIR</span>`:""}` : ""}</div>
+          <div class="ex-last" id="last_preview_${ex.id}">${lastPreview ? `Last: ${lastPreview}${avgRir!==null?" <span style=\"color:"+rirColor(Math.round(parseFloat(avgRir)))+";margin-left:6px\">avg "+avgRir+" RIR</span>":""}` : ""}</div>
         </div>
         <div class="ex-badge">${ex.sets}×</div>
       </div>
@@ -498,7 +500,7 @@ function setRowHtml(exId,i,weight,reps,rir){
     <div class="field-wrap"><div class="field-label">kg</div><input class="field-input" type="number" id="w_${exId}_${i}" value="${weight}" placeholder="kg"></div>
     <div class="field-wrap"><div class="field-label">reps</div><input class="field-input" type="number" id="r_${exId}_${i}" value="${reps}" placeholder="reps"></div>
     <div class="field-wrap">
-      <div class="field-label" id="rirlabel_${exId}_${i}" style="color:${rirColor(rir)}">RIR${rir!==""?` · ${rirLabel(rir).split("—")[0].trim()}`:""}</div>
+      <div class="field-label" id="rirlabel_${exId}_${i}" style="color:${rirColor(rir)}">RIR${rir!==""?" · "+rirLabel(rir).split("—")[0].trim():""}</div>
       <select class="rir-select" id="rir_${exId}_${i}" onchange="updateRirLabel('${exId}',${i})" style="border-color:${rir!==""?rirColor(rir):"var(--border)"};color:${rir!==""?rirColor(rir):"var(--text)"}">
         <option value="" ${rir===""?"selected":""}>— pick</option>
         <option value="0" ${rir==="0"?"selected":""}>0 — Failure</option>
@@ -527,8 +529,9 @@ function addSetRow(exId){
   const rows=document.getElementById("setrows_"+exId);
   const i=rows.children.length;
   const div=document.createElement("div");
-  div.innerHTML=setRowHtml(exId,i,"","","");
-  rows.appendChild(div.firstElementChild);
+  const tmp=document.createElement("div");
+  tmp.innerHTML=setRowHtml(exId,i,"","","");
+  rows.appendChild(tmp.firstElementChild);
 }
 
 function saveExSets(exId, containerId, day){
@@ -646,7 +649,7 @@ function renderProgress(){
       const ex=allEx.find(e=>e.id===id);
       const sets=sess.exercises[id];
       const avgRirV=sets.filter(s=>s.rir!=="").length?(sets.filter(s=>s.rir!=="").reduce((a,s)=>a+(parseInt(s.rir)||0),0)/sets.filter(s=>s.rir!=="").length).toFixed(1):null;
-      return `<div class="sess-ex"><span style="color:var(--text2)">${ex?.name}: </span><span style="color:var(--text)">${sets.map(s=>`${s.weight||"?"}kg×${s.reps||"?"}`).join("  ")}</span>${avgRirV!==null?`<span style="color:${rirColor(Math.round(parseFloat(avgRirV)));margin-left:6px;font-weight:600"> avg ${avgRirV} RIR</span>`:""}</div>`;
+      return `<div class="sess-ex"><span style="color:var(--text2)">${ex?.name}: </span><span style="color:var(--text)">${sets.map(s=>`${s.weight||"?"}kg×${s.reps||"?"}`).join("  ")}</span>${avgRirV!==null?"<span style='color:"+rirColor(Math.round(parseFloat(avgRirV)))+";margin-left:6px;font-weight:600'> avg "+avgRirV+" RIR</span>":""}</div>`;
     }).join("");
     return `<div class="sess-card"><div class="sess-date">${new Date(sess.date).toLocaleDateString("en-GB",{weekday:"long",day:"numeric",month:"long",year:"numeric"})}</div><div class="sess-day">${sess.day} — ${dayData?.title||""}</div>${exHtml}</div>`;
   }).join("");
